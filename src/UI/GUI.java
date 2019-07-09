@@ -84,7 +84,7 @@ public class GUI {
         label_setEventDate.setBounds(40, 130, 100, 30);
         EventSettings.add(label_setEventDate);
 
-        JTextField txt_eventName;
+        final JTextField txt_eventName;
         txt_eventName = new JTextField();
         txt_eventName.setToolTipText("Enter your event name here (or not, this field is optional).");
         txt_eventName.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -99,12 +99,12 @@ public class GUI {
 
         btnGenerateSchedule.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        JDateChooser dateChooser = new JDateChooser();
+        final JDateChooser dateChooser = new JDateChooser();
         dateChooser.setBounds(140, 130, 200, 30);
         dateChooser.setFont(new Font("Arial", Font.PLAIN, 16));
         EventSettings.add(dateChooser);
 
-        JLabel label_help = new JLabel("");
+        final JLabel label_help = new JLabel("");
         label_help.setHorizontalAlignment(SwingConstants.TRAILING);
         label_help.setForeground(new Color(255, 58, 58));
         label_help.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -121,20 +121,20 @@ public class GUI {
         label_targetGroups.setBounds(40, 180, 110, 30);
         EventSettings.add(label_targetGroups);
 
-        JComboBox cbox_target1 = new JComboBox();
+        final JComboBox cbox_target1 = new JComboBox();
         cbox_target1.setToolTipText("A group that will be shared on the days with the most active viewers (maximum exposure).");
         cbox_target1.setFont(new Font("Arial", Font.PLAIN, 16));
         cbox_target1.setBounds(200, 180, 135, 30);
 
         EventSettings.add(cbox_target1);
 
-        JComboBox cbox_target2 = new JComboBox();
+        final JComboBox cbox_target2 = new JComboBox();
         cbox_target2.setToolTipText("A group that will be shared on the days with the most active viewers (maximum exposure).");
         cbox_target2.setFont(new Font("Arial", Font.PLAIN, 16));
         cbox_target2.setBounds(380, 180, 135, 30);
         EventSettings.add(cbox_target2);
 
-        JComboBox cbox_target3 = new JComboBox();
+        final JComboBox cbox_target3 = new JComboBox();
         cbox_target3.setToolTipText("A group that will be shared on the days with the most active viewers (maximum exposure).");
         cbox_target3.setFont(new Font("Arial", Font.PLAIN, 16));
         cbox_target3.setBounds(560, 180, 135, 30);
@@ -145,7 +145,7 @@ public class GUI {
         label_moreSettings.setBounds(40, 280, 200, 30);
         EventSettings.add(label_moreSettings);
 
-        JCheckBox chckbox_ubcpreset = new JCheckBox("Use UBC BizTech 2019-2020 Groups Preset");
+        final JCheckBox chckbox_ubcpreset = new JCheckBox("Use UBC BizTech 2019-2020 Groups Preset");
         chckbox_ubcpreset.setToolTipText("Automatically load in all of the groups that UBC BizTech 2019-2020 have access to.");
         chckbox_ubcpreset.setFont(new Font("Arial", Font.PLAIN, 16));
         chckbox_ubcpreset.setBounds(40, 320, 400, 30);
@@ -197,7 +197,7 @@ public class GUI {
         txt_groupYear.setBounds(450, 110, 100, 30);
         GroupSettings.add(txt_groupYear);
 
-        JLabel label_grouphelp = new JLabel("");
+        final JLabel label_grouphelp = new JLabel("");
         label_grouphelp.setHorizontalAlignment(SwingConstants.TRAILING);
         label_grouphelp.setFont(new Font("Arial", Font.PLAIN, 16));
         label_grouphelp.setForeground(new Color(255, 58, 58));
@@ -216,9 +216,9 @@ public class GUI {
         //----------------------------------------------
         // TABLE THAT DISPLAYS THE ADDED GROUPS
         String g_col[] = {"Group Name", "Faculty", "Year", "Target?", "ShareTimes"};
-        DefaultTableModel groupsTableModel = new DefaultTableModel(g_col, 0);
+        final DefaultTableModel groupsTableModel = new DefaultTableModel(g_col, 0);
 
-        JTable groupsTable = new JTable(groupsTableModel);
+        final JTable groupsTable = new JTable(groupsTableModel);
         scrollPane_1.setViewportView(groupsTable);
 
         // This makes the table look prettier
@@ -456,27 +456,27 @@ public class GUI {
         scrollPane.setBounds(40, 130, 700, 303);
         ScheduleOutput.add(scrollPane);
 
-        JLabel EventName = new JLabel("Event Name: ");
+        final JLabel EventName = new JLabel("Event Name: ");
         EventName.setFont(new Font("Arial", Font.PLAIN, 16));
         EventName.setBounds(40, 80, 300, 30);
         ScheduleOutput.add(EventName);
 
-        JLabel EventDate = new JLabel("Event Date: ");
+        final JLabel EventDate = new JLabel("Event Date: ");
         EventDate.setFont(new Font("Arial", Font.PLAIN, 16));
         EventDate.setBounds(400, 80, 350, 30);
         ScheduleOutput.add(EventDate);
 
-        JLabel Stat1 = new JLabel("Total number of times to be shared: ");
+        final JLabel Stat1 = new JLabel("Total number of times to be shared: ");
         Stat1.setFont(new Font("Arial", Font.PLAIN, 16));
         Stat1.setBounds(40, 450, 300, 30);
         ScheduleOutput.add(Stat1);
 
-        JLabel Stat2 = new JLabel("Total number of ACTUAL shares: ");
+        final JLabel Stat2 = new JLabel("Total number of ACTUAL shares: ");
         Stat2.setFont(new Font("Arial", Font.PLAIN, 16));
         Stat2.setBounds(40, 480, 300, 30);
         ScheduleOutput.add(Stat2);
 
-        JLabel Stat3 = new JLabel("Total number of slots this week: ");
+        final JLabel Stat3 = new JLabel("Total number of slots this week: ");
         Stat3.setFont(new Font("Arial", Font.PLAIN, 16));
         Stat3.setBounds(440, 450, 300, 30);
         ScheduleOutput.add(Stat3);
@@ -486,7 +486,7 @@ public class GUI {
 
         String s_col[] = {"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"};
 
-        DefaultTableModel scheduleTableModel = new DefaultTableModel(s_col, 0);
+        final DefaultTableModel scheduleTableModel = new DefaultTableModel(s_col, 0);
         // The 0 argument is the number of rows
 
         JTable scheduleTable = new JTable(scheduleTableModel)
@@ -539,7 +539,7 @@ public class GUI {
 
         // This makes everything in the table centered
         for (int x=0 ;x<scheduleTable.getColumnCount(); x++)
-        {W
+        {
             scheduleTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
         }
 
