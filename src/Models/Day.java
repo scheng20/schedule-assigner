@@ -25,6 +25,10 @@ public class Day
 	}
 	
 	//Functions
+
+    // REQUIRES: A group that has all its fields set to something
+    // MODIFIES: this, group
+    // EFFECTS: Adds a group to the current day's data
 	public void addGroup(Group group)
 	{
 		String groupName = group.name;
@@ -44,7 +48,9 @@ public class Day
 		group.shareTimes --;
 		
 	}
-	
+
+	// REQUIRES: A group that has all its fields set to something
+    // EFFECTS: Determines whether or not the given group can be added to the current day
 	public boolean canAdd(Group group)
 	{
 		// Count how many appearances of this group's faculty are in this day
@@ -77,7 +83,7 @@ public class Day
 			}
 		}
 		
-		
+		// Each day can only have 2 same faculties, different year levels
 		if (shareSlots > 0 && sameFaculty < 2 && sameYear < 1 && group.shareTimes > 0)
 		{
 			return true;
@@ -88,7 +94,9 @@ public class Day
 		}
 	
 	}
-	
+
+	// MODIFIES: this
+    // EFFECTS: clear's all of the group data for this day
 	public void deleteAllGroups()
 	{
 		sharedGroups.clear();
