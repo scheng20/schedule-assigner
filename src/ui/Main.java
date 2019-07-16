@@ -12,7 +12,6 @@ public class Main {
 
         // For only reading the people file
         FileReader readOnlyPeeps = new PeopleFile();
-        readOnlyPeeps.openFile();
         readOnlyPeeps.readFile();
 
         // For only writing & saving the people file
@@ -21,7 +20,6 @@ public class Main {
 
         // A schedule that does all
         ScheduleFile schedule = new ScheduleFile();
-        schedule.openFile();
         schedule.readFile();
         schedule.saveFile();
 

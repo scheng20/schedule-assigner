@@ -15,16 +15,12 @@ public class PeopleFile implements  FileReader, FileSaver {
     // For writing and saving the file
     private FileWriter writer;
 
-    @Override
-    public void openFile() {
-
-        file = new File("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\PeopleInput.txt");
-
-    }
 
     @Override
     public void readFile() throws FileNotFoundException {
+
+        file = new File("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
+                + "project_scheng20\\storage\\PeopleInput.txt");
 
         scanner = new Scanner(file);
 

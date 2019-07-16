@@ -16,14 +16,10 @@ public class ScheduleFile implements  FileReader, FileSaver {
     private FileWriter writer;
 
     @Override
-    public void openFile() {
+    public void readFile() throws FileNotFoundException {
 
         file = new File("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
                 + "project_scheng20\\storage\\ScheduleInput.txt");
-    }
-
-    @Override
-    public void readFile() throws FileNotFoundException {
 
         scanner = new Scanner(file);
 
