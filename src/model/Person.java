@@ -7,13 +7,18 @@ public class Person {
     private ArrayList<String> groups;
     private int postTimes;
 
-    public Person(String name, ArrayList<String> groups) {
+    public Person(String name) {
         this.name = name;
-        this.groups = groups;
+        this.postTimes = 0;
+        this.groups = new ArrayList<String>();
     }
 
     public void incrementPostTimes() {
         postTimes++;
+    }
+
+    public void addGroup(String group) {
+        groups.add(group);
     }
 
     public String getName() {
@@ -22,6 +27,10 @@ public class Person {
 
     public ArrayList<String> getGroups() {
         return groups;
+    }
+
+    public int getPostTimes() {
+        return postTimes;
     }
 
 }
