@@ -38,7 +38,8 @@ public class PeopleFile extends FileAnalyzer {
         writer.close();
     }
 
-    public void processDetails() throws FileNotFoundException {
+
+     public void processDetails() throws FileNotFoundException {
 
         scanner = new Scanner(file);
 

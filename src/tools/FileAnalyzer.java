@@ -80,6 +80,6 @@ public abstract class FileAnalyzer implements FileReader, FileSaver {
         return output;
     }
 
-    abstract void processDetails() throws FileNotFoundException;
+    public abstract void processDetails() throws FileNotFoundException;
 
 }
