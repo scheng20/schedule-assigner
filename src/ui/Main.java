@@ -1,10 +1,9 @@
 package ui;
 
+import model.MarketingDay;
 import model.Person;
-import tools.FileReader;
-import tools.FileSaver;
-import tools.PeopleFile;
-import tools.ScheduleFile;
+import model.PeopleFile;
+import model.ScheduleFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        // Instantiate a people file for handling the people file
+        // Instantiate a people file
         PeopleFile peeps = new PeopleFile();
         peeps.readFile();
 
@@ -26,15 +25,18 @@ public class Main {
             System.out.println("Groups:" + currentPerson.getGroups());
         }
 
-        // For only reading the schedule file [for deliverable]
-        FileReader readOnlySchedule = new ScheduleFile();
-        readOnlySchedule.readFile();
+        // Instantiate a new schedule file
+        ScheduleFile schedule = new ScheduleFile();
+        schedule.readFile();
 
-        // For only writing & saving the people file [for deliverable]
-        FileSaver writeOnlySchedule = new ScheduleFile();
-        writeOnlySchedule.saveFile();
+        //Print out what was read:
+        ArrayList<MarketingDay> listofDays = schedule.getDays();
 
+        for (int i = 0; i < listofDays.size(); i++) {
+            MarketingDay currentDay = listofDays.get(i);
 
-
+            System.out.println("Date: " + currentDay.getDate());
+            System.out.println("Groups:" + currentDay.getGroups());
+        }
     }
 }

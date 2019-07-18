@@ -13,20 +13,20 @@ public class Person {
         this.groups = new ArrayList<String>();
     }
 
-    public void incrementPostTimes() {
-        postTimes++;
+    public void setGroups(ArrayList<String> groups) {
+        this.groups = groups;
     }
 
-    public void addGroup(String group) {
-        groups.add(group);
+    public ArrayList<String> getGroups() {
+        return groups;
     }
 
     public String getName() {
         return name;
     }
 
-    public ArrayList<String> getGroups() {
-        return groups;
+    public void incrementPostTimes() {
+        postTimes++;
     }
 
     public int getPostTimes() {

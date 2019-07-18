@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class FileTest
 {
+    // NOTE THIS TEST NEEDS TO TEST THE ACTUAL CODE THAT I WROTE, NOT WHAT JAVA DOES!
+
     // For opening and reading the file
     private File fileLoad;
     private File fileSave;
