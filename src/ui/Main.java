@@ -9,11 +9,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
+
+    // For testing purposes
+    static String scheduleLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
+            + "project_scheng20\\storage\\ScheduleInput.txt";
+    static String scheduleSavePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
+            + "project_scheng20\\storage\\ScheduleOutput.txt";
+
+    static String peopleLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
+            + "project_scheng20\\storage\\PeopleInput.txt";
+
+    static String peopleSavePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
+            + "project_scheng20\\storage\\PeopleOutput.txt";
+
     public static void main(String[] args) throws IOException {
 
         // Instantiate a people file
         PeopleFile peeps = new PeopleFile();
-        peeps.readFile();
+        peeps.readFile(peopleLoadPath);
 
         // Print out what was read:
         ArrayList<Person> listofPeeps = peeps.getPeople();
@@ -27,7 +40,7 @@ public class Main {
 
         // Instantiate a new schedule file
         ScheduleFile schedule = new ScheduleFile();
-        schedule.readFile();
+        schedule.readFile(scheduleLoadPath);
 
         //Print out what was read:
         ArrayList<MarketingDay> listofDays = schedule.getDays();

@@ -17,6 +17,4 @@ public class PostAssigner {
         this.people = people;
     }
 
-
-
 }

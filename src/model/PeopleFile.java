@@ -2,10 +2,7 @@ package model;
 
 import tools.FileAnalyzer;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,33 +11,12 @@ public class PeopleFile extends FileAnalyzer {
     // For storing the scanned people
     private ArrayList<Person> people;
 
+    // Constructor
     public PeopleFile() {
         this.people = new ArrayList<Person>();
     }
 
-    @Override
-    public void readFile() throws FileNotFoundException {
-
-        file = new File("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\PeopleInput.txt");
-
-        processDetails();
-
-    }
-
-    @Override
-    public void saveFile() throws IOException {
-
-        writer = new FileWriter("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\PeopleOutput.txt");
-
-        writer.write("This is a list of people that you can output!");
-        writer.close();
-    }
-
-
-     public void processDetails() throws FileNotFoundException {
-
+    public void processDetails() throws FileNotFoundException {
         scanner = new Scanner(file);
 
         while (scanner.hasNextLine()) {

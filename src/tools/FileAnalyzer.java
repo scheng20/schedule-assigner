@@ -1,7 +1,7 @@
 package tools;
 
-import model.FileReader;
-import model.FileSaver;
+import model.Readable;
+import model.Saveable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +18,7 @@ import java.util.Scanner;
 // The correct format is shown below:
 // label: content1, content2, content3, content4, ...
 
-public abstract class FileAnalyzer implements FileReader, FileSaver {
+public abstract class FileAnalyzer implements Readable, Saveable {
 
     // For opening and reading the file
     protected File file;
@@ -27,19 +27,17 @@ public abstract class FileAnalyzer implements FileReader, FileSaver {
     protected FileWriter writer;
     protected Scanner scanner;
 
-    private String defaultLoadPath = "C:\\Users\\cheng\\Downloads\\content.txt";
-    private String defaultSavePath = "C:\\Users\\cheng\\Downloads";
-
     // Reading (loading) the file
-    public void readFile() throws FileNotFoundException {
-        file = new File(defaultLoadPath);
+    public void readFile(String path) throws FileNotFoundException {
+        file = new File(path);
+        processDetails();
     }
 
     // Writing (saving) the file
-    public void saveFile() throws IOException {
-        writer = new FileWriter(defaultSavePath);
+    public void saveFile(String path, String content) throws IOException {
+        writer = new FileWriter(path);
 
-        writer.write("");
+        writer.write(content);
         writer.close();
     }
 
