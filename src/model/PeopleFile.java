@@ -56,6 +56,8 @@ public class PeopleFile extends FileAnalyzer {
 
     public void printContents() {
 
+        System.out.println("File Loaded Successfully! Here are its contents:");
+
         System.out.println("\nPeople: ");
 
         for (int i = 0; i < people.size(); i++) {

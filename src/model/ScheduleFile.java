@@ -54,6 +54,8 @@ public class ScheduleFile extends FileAnalyzer {
 
     public void printContents() {
 
+        System.out.println("File Loaded Successfully! Here are its contents:");
+
         System.out.println("\nSchedule (unassigned): ");
 
         for (int i = 0; i < days.size(); i++) {

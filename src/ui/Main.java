@@ -54,8 +54,6 @@ public class Main {
         while (true) {
             try {
                 peeps.readFile(filePath);
-
-                System.out.println("File Loaded Successfully! Here are its contents:");
                 peeps.printContents();
                 break;
 
@@ -66,7 +64,11 @@ public class Main {
             } catch (FileException e) {
                 peeps.handleException(e);
                 filePath = input.nextLine();
+            } finally {
+                System.out.println("Working on loading the file's contents...");
             }
+
+            // ADD TESTS FOR EXCEPTIONS!
         }
 
         return peeps;
@@ -82,7 +84,6 @@ public class Main {
         while (true) {
             try {
                 schedule.readFile(filePath);
-                System.out.println("File Loaded Successfully! Here are its contents:");
                 schedule.printContents();
                 break;
 
@@ -93,6 +94,8 @@ public class Main {
             } catch (FileException e) {
                 schedule.handleException(e);
                 filePath = input.nextLine();
+            } finally {
+                System.out.println("Working on loading the file's contents...");
             }
         }
 
