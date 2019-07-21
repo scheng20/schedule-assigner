@@ -1,5 +1,8 @@
 package tools;
 
+import exceptions.EmptyFileException;
+import exceptions.FileException;
+import exceptions.IncorrectFormatException;
 import model.Readable;
 import model.Saveable;
 
@@ -28,9 +31,18 @@ public abstract class FileAnalyzer implements Readable, Saveable {
     protected Scanner scanner;
 
     // Reading (loading) the file
-    public void readFile(String path) throws FileNotFoundException {
+    public void readFile(String path) throws FileNotFoundException, FileException {
+
         file = new File(path);
-        processDetails();
+
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        } else if (file.length() == 0) {
+            throw new EmptyFileException();
+        } else {
+            processDetails();
+        }
+
     }
 
     // Writing (saving) the file
@@ -78,6 +90,28 @@ public abstract class FileAnalyzer implements Readable, Saveable {
         return output;
     }
 
-    public abstract void processDetails() throws FileNotFoundException;
+    public void handleException(Exception e) {
 
+        if (e instanceof FileNotFoundException) {
+
+            System.out.println("That file is not found! Please enter a valid location:");
+
+        } else if (e instanceof EmptyFileException) {
+            System.out.println("File cannot be empty!");
+            System.out.println("\nPlease add some content to the file.");
+            System.out.println("Once you have done so, please re-enter the file's location: ");
+
+        } else if (e instanceof IncorrectFormatException) {
+            System.out.println("The file's contents are formatted incorrectly!");
+            getSampleFormat();
+            System.out.println("\nPlease reformat your file and try again!");
+            System.out.println("Once you have done so, please re-enter the file's location: ");
+        }
+    }
+
+    public abstract void processDetails() throws FileNotFoundException, FileException;
+
+    public abstract void getSampleFormat();
+
+    public abstract void printContents();
 }
