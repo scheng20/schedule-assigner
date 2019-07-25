@@ -1,7 +1,7 @@
 package model;
 
 import exceptions.IncorrectFormatException;
-import tools.FileAnalyzer;
+import tools.LineAnalyzer;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -13,12 +13,12 @@ public class PeopleFile extends CustomFile {
     private ArrayList<Person> people;
 
     // For analyzing the lines
-    private FileAnalyzer lineReader;
+    private LineAnalyzer lineReader;
 
     // Constructor
     public PeopleFile() {
         this.people = new ArrayList<Person>();
-        this.lineReader = new FileAnalyzer();
+        this.lineReader = new LineAnalyzer();
     }
 
     public void processDetails() throws FileNotFoundException, IncorrectFormatException {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 // The correct format is shown below:
 // label: content1, content2, content3, content4, ...
 
-public class FileAnalyzer {
+public class LineAnalyzer {
 
     // Retrieves the first part of the line
     public String getLabel(String line) {

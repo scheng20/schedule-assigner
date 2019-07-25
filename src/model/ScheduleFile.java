@@ -1,7 +1,7 @@
 package model;
 
 import exceptions.IncorrectFormatException;
-import tools.FileAnalyzer;
+import tools.LineAnalyzer;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ public class ScheduleFile extends CustomFile {
     private ArrayList<MarketingDay> days;
 
     // For analyzing the lines
-    private FileAnalyzer lineReader;
+    private LineAnalyzer lineReader;
 
     public ScheduleFile() {
         this.days = new ArrayList<MarketingDay>();
-        this.lineReader = new FileAnalyzer();
+        this.lineReader = new LineAnalyzer();
     }
 
     public void processDetails() throws FileNotFoundException, IncorrectFormatException {
