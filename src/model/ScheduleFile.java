@@ -63,11 +63,10 @@ public class ScheduleFile extends CustomFile {
 
         System.out.println("\nSchedule (unassigned): ");
 
-        for (int i = 0; i < days.size(); i++) {
-            MarketingDay currentDay = days.get(i);
+        for (MarketingDay d: days) {
 
-            System.out.println("Date: " + currentDay.getDate());
-            System.out.println("Groups:" + currentDay.getGroups());
+            System.out.println("Date: " + d.getDate());
+            System.out.println("Groups:" + d.getGroups());
         }
     }
 

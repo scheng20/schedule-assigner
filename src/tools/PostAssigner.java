@@ -20,4 +20,8 @@ public class PostAssigner {
         this.schedule = s.getDays();
     }
 
+    public void assignPosts() {
+        
+    }
+
 }

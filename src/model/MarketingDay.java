@@ -13,6 +13,7 @@ public class MarketingDay {
         this.date = date;
         this.groups = new ArrayList<String>();
         this.assigned = false;
+        this.assignedPeople = new ArrayList<Person>();
     }
 
     public void setGroups(ArrayList<String> groups) {
@@ -33,5 +34,9 @@ public class MarketingDay {
 
     public boolean getAssigned() {
         return assigned;
+    }
+
+    public void addPerson(Person p) {
+        assignedPeople.add(p);
     }
 }
