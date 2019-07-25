@@ -75,6 +75,7 @@ public class ExceptionsTest {
 
         try {
             schedule.readFile(badFormatFilePath);
+
             people.readFile(badFormatFilePath);
 
             fail();

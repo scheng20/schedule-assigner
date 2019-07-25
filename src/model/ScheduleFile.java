@@ -7,13 +7,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ScheduleFile extends FileAnalyzer {
+public class ScheduleFile extends CustomFile {
 
     // For storing the scanned days
     private ArrayList<MarketingDay> days;
 
+    // For analyzing the lines
+    private FileAnalyzer lineReader;
+
     public ScheduleFile() {
         this.days = new ArrayList<MarketingDay>();
+        this.lineReader = new FileAnalyzer();
     }
 
     public void processDetails() throws FileNotFoundException, IncorrectFormatException {
@@ -27,18 +31,19 @@ public class ScheduleFile extends FileAnalyzer {
                 String currentLine = scanner.nextLine();
 
                 // Call the FileAnalyzer's methods
-                String date = getLabel(currentLine);
-                String[] groupList = getContent(currentLine);
+                String date = lineReader.getLabel(currentLine);
+                String[] groupList = lineReader.getContent(currentLine);
 
                 // Instantiate a new day object
                 MarketingDay d = new MarketingDay(date);
 
                 // Set the day's groups
-                d.setGroups(convertToAList(groupList));
+                d.setGroups(lineReader.convertToAList(groupList));
 
                 // Add the marketing day object to the list of days
                 days.add(d);
             }
+
         } catch (ArrayIndexOutOfBoundsException e) {
 
             // This array runtime error would only occur if the file wasn't formatted correctly
@@ -54,7 +59,7 @@ public class ScheduleFile extends FileAnalyzer {
 
     public void printContents() {
 
-        System.out.println("File Loaded Successfully! Here are its contents:");
+        System.out.println("File loaded successfully! Here are its contents:");
 
         System.out.println("\nSchedule (unassigned): ");
 

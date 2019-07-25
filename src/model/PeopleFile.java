@@ -1,6 +1,5 @@
 package model;
 
-import exceptions.FileException;
 import exceptions.IncorrectFormatException;
 import tools.FileAnalyzer;
 
@@ -8,17 +7,21 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PeopleFile extends FileAnalyzer {
+public class PeopleFile extends CustomFile {
 
     // For storing the scanned people
     private ArrayList<Person> people;
 
+    // For analyzing the lines
+    private FileAnalyzer lineReader;
+
     // Constructor
     public PeopleFile() {
         this.people = new ArrayList<Person>();
+        this.lineReader = new FileAnalyzer();
     }
 
-    public void processDetails() throws FileNotFoundException, FileException {
+    public void processDetails() throws FileNotFoundException, IncorrectFormatException {
 
         scanner = new Scanner(file);
 
@@ -28,19 +31,20 @@ public class PeopleFile extends FileAnalyzer {
                 // Get the current line being read
                 String currentLine = scanner.nextLine();
 
-                // Call the FileAnalyzer's methods
-                String name = getLabel(currentLine);
-                String[] groupList = getContent(currentLine);
+                // Call the lineReader's methods
+                String name = lineReader.getLabel(currentLine);
+                String[] groupList = lineReader.getContent(currentLine);
 
                 // Instantiate a new person object
                 Person p = new Person(name);
 
                 // Set the person object's groups
-                p.setGroups(convertToAList(groupList));
+                p.setGroups(lineReader.convertToAList(groupList));
 
                 // Add the person object to the list of people
                 people.add(p);
             }
+
         } catch (ArrayIndexOutOfBoundsException e) {
 
             // This array runtime error would only occur if the file wasn't formatted correctly
@@ -56,7 +60,7 @@ public class PeopleFile extends FileAnalyzer {
 
     public void printContents() {
 
-        System.out.println("File Loaded Successfully! Here are its contents:");
+        System.out.println("File loaded successfully! Here are its contents:");
 
         System.out.println("\nPeople: ");
 
@@ -75,6 +79,4 @@ public class PeopleFile extends FileAnalyzer {
         System.out.println("\nFor example: ");
         System.out.println("Bob: UBC 2022, Sauder 2021, BUCS");
     }
-
-
 }
