@@ -66,7 +66,7 @@ public class ScheduleFile extends CustomFile {
         for (MarketingDay d: days) {
 
             System.out.println("Date: " + d.getDate());
-            System.out.println("Groups:" + d.getGroups());
+            System.out.println("Groups:" + d.getGroupsAsStrings());
         }
     }
 

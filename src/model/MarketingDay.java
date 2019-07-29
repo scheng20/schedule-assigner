@@ -2,26 +2,17 @@ package model;
 
 import java.util.ArrayList;
 
-public class MarketingDay {
+public class MarketingDay extends HasGroups {
 
     private String date;
-    private ArrayList<String> groups;
+
     private ArrayList<Person> assignedPeople;
     private Boolean assigned;
 
     public MarketingDay(String date) {
         this.date = date;
-        this.groups = new ArrayList<String>();
         this.assigned = false;
         this.assignedPeople = new ArrayList<Person>();
-    }
-
-    public void setGroups(ArrayList<String> groups) {
-        this.groups = groups;
-    }
-
-    public ArrayList<String> getGroups() {
-        return groups;
     }
 
     public String getDate() {
@@ -36,7 +27,13 @@ public class MarketingDay {
         return assigned;
     }
 
-    public void addPerson(Person p) {
-        assignedPeople.add(p);
+    // FOR WEEK 8 DELIVERABLE
+    public void assignPerson(Person p) {
+
+        if (!assignedPeople.contains(p)) {
+            assignedPeople.add(p);
+            p.assignDate(this);
+        }
+
     }
 }

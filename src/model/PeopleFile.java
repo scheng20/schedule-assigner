@@ -66,7 +66,7 @@ public class PeopleFile extends CustomFile {
 
         for (Person p: people) {
             System.out.println("Name: " + p.getName());
-            System.out.println("Groups:" + p.getGroups());
+            System.out.println("Groups:" + p.getGroupsAsStrings());
         }
     }
 

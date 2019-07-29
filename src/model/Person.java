@@ -1,36 +1,57 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Person {
+public class Person extends HasGroups {
     private String name;
     private ArrayList<String> groups;
-    private int postTimes;
+    private ArrayList<MarketingDay> assignedDays;
+    private boolean assigned;
 
     public Person(String name) {
         this.name = name;
-        this.postTimes = 0;
         this.groups = new ArrayList<String>();
-    }
-
-    public void setGroups(ArrayList<String> groups) {
-        this.groups = groups;
-    }
-
-    public ArrayList<String> getGroups() {
-        return groups;
+        this.assigned = false;
     }
 
     public String getName() {
         return name;
     }
 
-    public void incrementPostTimes() {
-        postTimes++;
+    public boolean getAssigned() {
+        return assigned;
     }
 
-    public int getPostTimes() {
-        return postTimes;
+    // FOR WEEK 8 DELIVERABLE
+    public void assignDate(MarketingDay day) {
+
+        if (!assignedDays.contains(day)) {
+            assignedDays.add(day);
+            day.assignPerson(this);
+        }
+
+        assigned = true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Person person = (Person) o;
+        return name.equals(person.name)
+                &&
+                groups.equals(person.groups);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, groups);
+    }
 }
