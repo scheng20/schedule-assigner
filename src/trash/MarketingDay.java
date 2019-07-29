@@ -1,4 +1,6 @@
-package model;
+package trash;
+
+import model.Person;
 
 import java.util.ArrayList;
 

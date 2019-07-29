@@ -1,4 +1,6 @@
-package model;
+package trash;
+
+import model.Group;
 
 import java.util.ArrayList;
 

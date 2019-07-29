@@ -1,25 +1,27 @@
 package tools;
 
-import model.*;
+import model.Group;
+import model.PeopleFile;
+import model.Person;
+import model.ScheduleFile;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 // The actual algorithm of sorting the people and assigning them to post on which day
 
 public class PostAssigner {
 
-    ArrayList<MarketingDay> schedule;
     ArrayList<Person> people;
-    ArrayList<Group> rareGroups;
 
-    Map<MarketingDay, ArrayList<Person>> assignedSchedule = new HashMap<>();
+    Map<String, ArrayList<Group>> schedule;
+
+    ArrayList<Group> rareGroups;
 
     public PostAssigner(PeopleFile p, ScheduleFile s) {
 
-        this.people = p.getPeople();
-        this.schedule = s.getDays();
+        people = p.getPeople();
+        schedule = s.getSchedule();
         rareGroups = new ArrayList<Group>();
     }
 
@@ -27,12 +29,36 @@ public class PostAssigner {
 
         // TODO:
         // Algorithm that computes the assignments
-        findRareGroup();
-        assignRareGroups();
+        //findRareGroup();
+        //assignRareGroups();
+
+    }
+
+    public ArrayList<Group> getAllDistinctToBeSharedGroups() {
+
+        ArrayList<Group> allDistinctTobeSharedGroups = new ArrayList<Group>();
+
+        for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
+
+            ArrayList<Group> currentDayGroups = entry.getValue();
+
+            for (Group g: currentDayGroups) {
+                if (!allDistinctTobeSharedGroups.contains(g)) {
+                    allDistinctTobeSharedGroups.add(g);
+                }
+            }
+        }
+
+        return allDistinctTobeSharedGroups;
 
     }
 
     // rareGroups = groups that only 1 person is a part of
+
+
+    // OLD
+
+    /*
     public void findRareGroup() {
 
         int numOfPeopleHasGroup = 0;
@@ -73,20 +99,20 @@ public class PostAssigner {
                     for (Person p: people) {
 
                         if (p.getGroups().contains(g)) {
-                            p.assignDate(d);
+                            //p.assignDate(d);
                         }
                     }
                 }
             }
 
         }
-    }
+    } */
 
     public ArrayList<Group> getRareGroups() {
         return rareGroups;
     }
 
-    public Map<MarketingDay, ArrayList<Person>> getResult() {
-        return assignedSchedule;
+    public Map<String, ArrayList<Group>> getSchedule() {
+        return schedule;
     }
 }

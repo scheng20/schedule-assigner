@@ -5,18 +5,22 @@ import tools.LineAnalyzer;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ScheduleFile extends CustomFile {
 
-    // For storing the scanned days
-    private ArrayList<MarketingDay> days;
+    // For storing the scanned schedule
+    //private ArrayList<MarketingDay> days;
+    private Map<String, ArrayList<Group>> schedule;
 
     // For analyzing the lines
     private LineAnalyzer lineReader;
 
     public ScheduleFile() {
-        this.days = new ArrayList<MarketingDay>();
+        //this.days = new ArrayList<MarketingDay>();
+        this.schedule = new HashMap<String,ArrayList<Group>>();
         this.lineReader = new LineAnalyzer();
     }
 
@@ -34,14 +38,19 @@ public class ScheduleFile extends CustomFile {
                 String date = lineReader.getLabel(currentLine);
                 String[] groupList = lineReader.getContent(currentLine);
 
+                // NEW:
+                // Store the scanned contents into the schedule hashMap!
+                schedule.put(date, lineReader.convertToAList(groupList));
+
+                // OLD:
                 // Instantiate a new day object
-                MarketingDay d = new MarketingDay(date);
+                //MarketingDay d = new MarketingDay(date);
 
                 // Set the day's groups
-                d.setGroups(lineReader.convertToAList(groupList));
+                //d.setGroups(lineReader.convertToAList(groupList));
 
                 // Add the marketing day object to the list of days
-                days.add(d);
+                //days.add(d);
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -53,8 +62,13 @@ public class ScheduleFile extends CustomFile {
         scanner.close();
     }
 
+    /*
     public ArrayList<MarketingDay> getDays() {
         return days;
+    } */
+
+    public Map<String, ArrayList<Group>> getSchedule() {
+        return schedule;
     }
 
     public void printContents() {
@@ -63,11 +77,19 @@ public class ScheduleFile extends CustomFile {
 
         System.out.println("\nSchedule (unassigned): ");
 
+
+        for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
+            System.out.println("Date:" + entry.getKey() + "\nGroups: " + entry.getValue().toString());
+        }
+
+        // OLD:
+
+        /*
         for (MarketingDay d: days) {
 
             System.out.println("Date: " + d.getDate());
             System.out.println("Groups:" + d.getGroupsAsStrings());
-        }
+        }*/
     }
 
     public void getSampleFormat() {

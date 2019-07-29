@@ -11,8 +11,8 @@ import tools.PostAssigner;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class PostAssignerTest {
 
@@ -29,6 +29,7 @@ public class PostAssignerTest {
 
     }
 
+    /*
     @Test
     public void testFindRareGroup() {
 
@@ -45,6 +46,28 @@ public class PostAssignerTest {
 
         assertTrue(result.contains(g1));
         assertTrue(result.contains(g2));
+    }*/
+
+    @Test
+    public void testFindDistinctGroups() {
+
+        PostAssigner PA = new PostAssigner(peopleInput, scheduleInput);
+
+        ArrayList<Group> result = PA.getAllDistinctToBeSharedGroups();
+
+        Group g1 = new Group("Arts 2022");
+        Group g2 = new Group ("BUCS");
+        Group g3 = new Group ("Sauder 2023");
+        Group g4 = new Group ("UBC 2022");
+
+
+        assertEquals(4, result.size());
+
+        assertTrue(result.contains(g1));
+        assertTrue(result.contains(g2));
+        assertTrue(result.contains(g3));
+        assertTrue(result.contains(g4));
+
     }
 
 }
