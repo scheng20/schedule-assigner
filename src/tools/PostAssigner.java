@@ -42,6 +42,7 @@ public class PostAssigner {
 
             ArrayList<Group> currentDayGroups = entry.getValue();
 
+            // Needs to be fixed here
             for (Group g: currentDayGroups) {
                 if (!allDistinctTobeSharedGroups.contains(g)) {
                     allDistinctTobeSharedGroups.add(g);
