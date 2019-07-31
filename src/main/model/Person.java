@@ -11,24 +11,13 @@ public class Person {
 
     private ArrayList<Group> assignedGroups;
 
-    private boolean assigned; // dont need this
-
     public Person(String name) {
         this.name = name;
         this.isInGroups = new ArrayList<Group>();
-        this.assigned = false;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setAssigned(boolean status) {
-        assigned = status;
-    }
-
-    public boolean getAssigned() {
-        return assigned;
     }
 
     // FOR WEEK 8 DELIVERABLE
@@ -38,8 +27,6 @@ public class Person {
             assignedGroups.add(group);
             group.setPerson(this);
         }
-
-        assigned = true;
     }
 
     public void setGroups(ArrayList<Group> isInGroups) {
@@ -48,6 +35,7 @@ public class Person {
     }
 
     public ArrayList<String> getGroupsAsStrings() {
+
         ArrayList<String> result = new ArrayList<>();
 
         for (Group g: isInGroups) {

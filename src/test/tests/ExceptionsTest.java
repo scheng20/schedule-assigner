@@ -1,4 +1,4 @@
-package Tests;
+package tests;
 
 import exceptions.EmptyFileException;
 import exceptions.FileException;

@@ -68,19 +68,26 @@ public class ScheduleFile extends CustomFile {
 
         System.out.println("\nSchedule (unassigned): ");
 
-
         for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
-            System.out.println("Date:" + entry.getKey() + "\nGroups: " + entry.getValue().toString());
+
+            System.out.println("Date:" + entry.getKey());
+
+            ArrayList<String> groupsAsString = getGroupsAsString(entry.getValue());
+
+            System.out.println("Groups: " + groupsAsString);
         }
 
-        // OLD:
+    }
 
-        /*
-        for (MarketingDay d: days) {
+    public ArrayList<String> getGroupsAsString(ArrayList<Group> input) {
 
-            System.out.println("Date: " + d.getDate());
-            System.out.println("Groups:" + d.getGroupsAsStrings());
-        }*/
+        ArrayList<String> output = new ArrayList<>();
+
+        for (Group g: input) {
+            output.add(g.getName());
+        }
+
+        return output;
     }
 
     public void getSampleFormat() {
