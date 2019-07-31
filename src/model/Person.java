@@ -11,7 +11,7 @@ public class Person {
 
     private ArrayList<Group> assignedGroups;
 
-    private boolean assigned;
+    private boolean assigned; // dont need this
 
     public Person(String name) {
         this.name = name;
@@ -42,13 +42,9 @@ public class Person {
         assigned = true;
     }
 
-    public void setGroups(ArrayList<String> groupNames) {
+    public void setGroups(ArrayList<Group> isInGroups) {
 
-        for (int i = 0; i < groupNames.size(); i++) {
-            String currentName = groupNames.get(i);
-            Group g = new Group(currentName);
-            isInGroups.add(g);
-        }
+        this.isInGroups = isInGroups;
     }
 
     public ArrayList<String> getGroupsAsStrings() {

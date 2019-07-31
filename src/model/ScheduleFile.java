@@ -19,8 +19,8 @@ public class ScheduleFile extends CustomFile {
     private LineAnalyzer lineReader;
 
     public ScheduleFile() {
-        //this.days = new ArrayList<MarketingDay>();
-        this.schedule = new HashMap<String,ArrayList<Group>>();
+
+        this.schedule = new HashMap<>();
         this.lineReader = new LineAnalyzer();
     }
 
@@ -37,20 +37,11 @@ public class ScheduleFile extends CustomFile {
                 // Call the FileAnalyzer's methods
                 String date = lineReader.getLabel(currentLine);
                 String[] groupList = lineReader.getContent(currentLine);
+                ArrayList<Group> groupListInput = lineReader.convertToAList(groupList);
 
                 // NEW:
                 // Store the scanned contents into the schedule hashMap!
-                schedule.put(date, lineReader.convertToAList(groupList));
-
-                // OLD:
-                // Instantiate a new day object
-                //MarketingDay d = new MarketingDay(date);
-
-                // Set the day's groups
-                //d.setGroups(lineReader.convertToAList(groupList));
-
-                // Add the marketing day object to the list of days
-                //days.add(d);
+                schedule.put(date, groupListInput);
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {

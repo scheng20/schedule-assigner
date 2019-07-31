@@ -1,5 +1,7 @@
 package tools;
 
+import model.Group;
+
 import java.util.ArrayList;
 
 // Analyzes a given file of text, includes reading (loading) and writing (saving) the file
@@ -24,7 +26,7 @@ public class LineAnalyzer {
 
     }
 
-    // Retrieves the second part (list) of the line
+    // Retrieves the second part (group list) of the line
     public String[] getContent(String line) {
         // Split and analyze the current line
         String[] split = line.split(": ");
@@ -36,14 +38,15 @@ public class LineAnalyzer {
         return cutList;
     }
 
-    // Converts second part into an ArrayList
+    // Converts second part into an ArrayList (In terms of a Group)
     public ArrayList convertToAList(String[] given) {
 
-        ArrayList<String> output = new ArrayList<String>();
+        ArrayList<Group> output = new ArrayList<Group>();
 
         for (int i = 0; i < given.length; i++) {
             String currentString = given[i];
-            output.add(currentString);
+            Group g = new Group(currentString);
+            output.add(g);
         }
 
         return output;
