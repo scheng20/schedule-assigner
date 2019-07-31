@@ -14,6 +14,7 @@ public class Person {
     public Person(String name) {
         this.name = name;
         this.isInGroups = new ArrayList<Group>();
+        this.assignedGroups = new ArrayList<Group>();
     }
 
     public String getName() {
@@ -51,6 +52,17 @@ public class Person {
 
     public ArrayList<Group> getAssignedGroups() {
         return assignedGroups;
+    }
+
+    public boolean hasGroupAssigned() {
+
+        if (assignedGroups.size() >= 1) {
+
+            return true;
+
+        } else {
+            return false;
+        }
     }
 
     @Override

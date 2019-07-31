@@ -13,12 +13,12 @@ public class Main {
 
     // For testing purposes
     static String sLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\ScheduleInput.txt";
+            + "project_scheng20\\storage\\BizTechScheduleInput.txt";
     static String savePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\ScheduleOutput.txt";
 
     static String pLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\PeopleInput.txt";
+            + "project_scheng20\\storage\\BizTechPeopleInput.txt";
 
     static String pSavePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\PeopleOutput.txt";
@@ -37,7 +37,11 @@ public class Main {
         // Ask for user input of data
         System.out.println("Please enter the location of the people file you want to load: ");
         PeopleFile p = new PeopleFile();
-        filePath = input.nextLine();
+
+        // TODO: change the loadPath input once testing is done!
+        //filePath = input.nextLine();
+        filePath = pLoadPath;
+
         loadTo(filePath, p);
 
         System.out.println("\n");
@@ -45,7 +49,11 @@ public class Main {
 
         System.out.println("Please enter the location of the schedule file you want to load: ");
         ScheduleFile s = new ScheduleFile();
-        filePath = input.nextLine();
+
+        // TODO: change the loadPath input once testing is done!
+        //filePath = input.nextLine();
+        filePath = sLoadPath;
+
         loadTo(filePath, s);
 
         System.out.println("Assign these people to the given schedule? (Y/N)");
@@ -73,6 +81,7 @@ public class Main {
     public static void runAssignment(PeopleFile p, ScheduleFile s) {
 
         PostAssigner machine = new PostAssigner(p,s);
+        machine.assignPosts();
     }
 
 }

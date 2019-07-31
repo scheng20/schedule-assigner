@@ -6,35 +6,39 @@ public class Group {
 
     private String name;
     private Person personResponsible;
-    private boolean isAssigned;
+
+    // If you change this back to null, make sure to change the method
+    // that determines whether or not the group has been assigned!
+    private Person nobody = new Person("Nobody");
 
     public Group(String name) {
 
         this.name = name;
-        this.isAssigned = false;
-        this.personResponsible = null;
+        this.personResponsible = nobody;
     }
 
     // FOR WEEK 8 DELIVERABLE
     public void setPerson(Person p) {
 
-        if (!personResponsible.equals(p)) {
+        if (personResponsible != p) {
             personResponsible = p;
             p.assignGroup(this);
-            isAssigned = true;
         }
     }
 
+    // EFFECTS: returns the name of the group
     public String getName() {
         return name;
     }
 
+    // EFFECTS: returns the person responsible for sharing this group
     public Person getPersonResponsible() {
         return personResponsible;
     }
 
-    public Boolean getIsAssigned() {
-        return isAssigned;
+    // EFFECTS: returns true if a person is assigned to this group, else false
+    public Boolean isAssigned() {
+        return personResponsible != nobody;
     }
 
     @Override
@@ -46,11 +50,12 @@ public class Group {
             return false;
         }
         Group group = (Group) o;
-        return Objects.equals(name, group.name);
+        return Objects.equals(name, group.name)
+                && Objects.equals(personResponsible, group.personResponsible);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, personResponsible);
     }
 }
