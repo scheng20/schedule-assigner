@@ -4,17 +4,20 @@ import model.Group;
 
 import java.util.ArrayList;
 
-// Analyzes a given file of text, includes reading (loading) and writing (saving) the file
-// For each line, it splits the first part from the second part and turns the second part into
-// an ArrayList of type Strings.
-
-// Requires that each line is formatted correctly
-// The correct format is shown below:
-// label: content1, content2, content3, content4, ...
-
 public class LineAnalyzer {
 
-    // Retrieves the first part of the line
+    // ------------------------------------ TOOL CLASS NOTES --------------------------------------
+    // Analyzes a given file of text, includes reading (loading) and writing (saving) the file
+    // For each line, it splits the first part from the second part and turns the second part into
+    // an ArrayList of type Groups.
+
+    // Requires that each line is formatted correctly
+    // The correct format is shown below:
+    // label: content1, content2, content3, content4, ...
+    // --------------------------------------------------------------------------------------------
+
+    // REQUIRES: Line is formatted correctly
+    // EFFECTS: Retrieves the first part of given line
     public String getLabel(String line) {
         // Split and analyze the current line
         String[] split = line.split(": ");
@@ -26,7 +29,8 @@ public class LineAnalyzer {
 
     }
 
-    // Retrieves the second part (group list) of the line
+    // REQUIRES: Line is formatted correctly
+    // EFFECTS: Retrieves the second part (group list) of the given line
     public String[] getContent(String line) {
         // Split and analyze the current line
         String[] split = line.split(": ");
@@ -38,7 +42,8 @@ public class LineAnalyzer {
         return cutList;
     }
 
-    // Converts second part into an ArrayList (In terms of a Group)
+    // REQUIRES: Line is formatted correctly
+    // EFFECTS: Converts given String Array into an ArrayList of Groups
     public ArrayList convertToAList(String[] given) {
 
         ArrayList<Group> output = new ArrayList<Group>();

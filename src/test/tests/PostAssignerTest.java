@@ -125,6 +125,8 @@ public class PostAssignerTest {
     @Test
     public void testFindRareGroupThrowException() {
 
+
+
     }
 
     @Test
@@ -136,6 +138,7 @@ public class PostAssignerTest {
 
         Map<String, ArrayList<Group>> schedule = PA.getSchedule();
 
+        // Point for Single Responsibility thing!
         for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
 
             ArrayList<Group> currentDayGroups = entry.getValue();
@@ -157,22 +160,53 @@ public class PostAssignerTest {
 
     }
 
-    // TODO: testAssignRareGroups
     @Test
     public void testAssignRareGroups() {
+
+        PA.findAllDistinctToBeSharedGroups();
+        PA.findAllGroupsPeopleAreApartOf();
+        try {
+
+            PA.findRareGroups();
+            PA.assignRareGroups();
+
+            ArrayList<Group> rareGroups = PA.getRareGroups();
+            Map<String, ArrayList<Group>> schedule = PA.getSchedule();
+
+            // Point for Single Responsibility thing!
+            for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
+
+                ArrayList<Group> currentDayGroups = entry.getValue();
+
+                for (Group rg: rareGroups) {
+
+                    if (currentDayGroups.contains(rg)){
+
+                        int searchIndex = currentDayGroups.indexOf(rg);
+                        Group target = currentDayGroups.get(searchIndex);
+                        assertTrue(target.isAssigned());
+
+                    }
+
+                }
+            }
+
+        } catch (NoPersonInGroupException e) {
+            fail();
+        }
 
     }
 
     // TODO: testPrintAssignedSchedule
     @Test
     public void testPrintAssignedSchedule() {
-
+        PA.printAssignedSchedule();
     }
 
     // TODO: testAssignPosts
     @Test
     public void testAssignPosts() {
-
+        PA.assignPosts();
     }
 
 }

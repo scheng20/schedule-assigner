@@ -9,18 +9,25 @@ import model.ScheduleFile;
 import java.util.ArrayList;
 import java.util.Map;
 
-// The actual algorithm of sorting the people and assigning them to post on which day
-
 public class PostAssigner {
 
-    ArrayList<Person> people;
+    // ------------------------------------ TOOL CLASS NOTES --------------------------------------
+    // Handles the actual algorithm of assigning the list of people to their appropriate groups
+    // based on which groups each person is in, and whether or not this person must be responsible
+    // for sharing to a certain group because they are the only person a part of that group out of
+    // all the other people given.
+    // --------------------------------------------------------------------------------------------
 
+    // For storing the people and the schedule (main two inputs)
+    ArrayList<Person> people;
     Map<String, ArrayList<Group>> schedule;
 
+    // For storing the groups that are needed as a part of the process for assigning the posts
     ArrayList<Group> distinctToBeSharedGroups;
     ArrayList<Group> allGroupsPeopleAreIn;
     ArrayList<Group> rareGroups;
 
+    // Constructs a new post assigner
     public PostAssigner(PeopleFile p, ScheduleFile s) {
 
         people = p.getPeople();
@@ -28,9 +35,13 @@ public class PostAssigner {
         rareGroups = new ArrayList<Group>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: Assigns each person a group that they are responsible for sharing based on the groups
+    //          provided by the schedule.
     public void assignPosts() {
 
-        // THE CURRENT ALGORITHM ISN'T PERFECT BUT IT GETS THE JOB DONE SOMEWHAT
+        // Note to self:
+        // The current algorithm isn't perfect but it gets the job done for now!
 
         findAllDistinctToBeSharedGroups();
         findAllGroupsPeopleAreApartOf();
@@ -47,6 +58,7 @@ public class PostAssigner {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: finds all of the distinct groups that exists in the sharing schedule
     public void findAllDistinctToBeSharedGroups() {
 
@@ -68,6 +80,7 @@ public class PostAssigner {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: finds all the groups that people are a part of stacked together in a list
     public void findAllGroupsPeopleAreApartOf() {
 
@@ -81,6 +94,7 @@ public class PostAssigner {
 
     }
 
+    // MODIFIES: this
     // EFFECTS: finds a list of groups where only 1 person is a part of the group
     public void findRareGroups() throws NoPersonInGroupException {
 
@@ -116,6 +130,8 @@ public class PostAssigner {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: Finds and assigns appropriate people to the rare groups
     public void assignRareGroups() {
 
         // Directly assign the people who have the rare group to the rare group in the schedule
@@ -132,6 +148,8 @@ public class PostAssigner {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Assigns specified person to specified group in the schedule
     public void assignGroupToPersonInSchedule(Group g, Person p) {
 
         for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
@@ -148,22 +166,8 @@ public class PostAssigner {
 
     }
 
-    public void printAssignedSchedule() {
-        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
-            System.out.println();
-            System.out.println("Date: " + entry.getKey());
-            System.out.println("Groups: ");
-
-            ArrayList<Group> currentDayGroup = entry.getValue();
-
-            for (Group g: currentDayGroup) {
-                System.out.println("Group Name: " + g.getName());
-                System.out.println("Person Responsible: " + g.getPersonResponsible().getName());
-                System.out.println();
-            }
-        }
-    }
-
+    // MODIFIES: this
+    // EFFECTS: Loops through the schedule and finds appropriate person for each current group
     public void assignRestOfGroups() {
 
         for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
@@ -191,6 +195,25 @@ public class PostAssigner {
 
 
     }
+
+    // EFFECTS: Prints the schedule and all of its assignments
+    public void printAssignedSchedule() {
+        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
+            System.out.println();
+            System.out.println("Date: " + entry.getKey());
+            System.out.println("Groups: ");
+
+            ArrayList<Group> currentDayGroup = entry.getValue();
+
+            for (Group g: currentDayGroup) {
+                System.out.println("Group Name: " + g.getName());
+                System.out.println("Person Responsible: " + g.getPersonResponsible().getName());
+                System.out.println();
+            }
+        }
+    }
+
+    // ------------------------- GETTERS AND SETTERS -------------------------
 
     public ArrayList<Group> getDistinctToBeSharedGroups() {
         return distinctToBeSharedGroups;

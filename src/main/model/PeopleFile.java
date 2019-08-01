@@ -15,12 +15,16 @@ public class PeopleFile extends CustomFile {
     // For analyzing the lines
     private LineAnalyzer lineReader;
 
-    // Constructor
+    // Constructs a new people file
     public PeopleFile() {
         this.people = new ArrayList<Person>();
         this.lineReader = new LineAnalyzer();
     }
 
+    // MODIFIES: this
+    // EFFECTS: Scans the file line by line and storing the scanned information into
+    //          different person objects. Throws IncorrectFormatException if the file's
+    //          contents are formatted incorrectly.
     public void processDetails() throws FileNotFoundException, IncorrectFormatException {
 
         scanner = new Scanner(file);
@@ -54,10 +58,7 @@ public class PeopleFile extends CustomFile {
         scanner.close();
     }
 
-    public ArrayList<Person> getPeople() {
-        return people;
-    }
-
+    // EFFECTS: prints out the contents of the people file
     public void printContents() {
 
         System.out.println("File loaded successfully! Here are its contents:");
@@ -70,11 +71,18 @@ public class PeopleFile extends CustomFile {
         }
     }
 
+    // EFFECTS: Prints out a sample format of the people file
     public void getSampleFormat() {
 
         System.out.println("\nThe correct format for a people input file should be:");
         System.out.println("Name: Group1, Group2, Group3");
         System.out.println("\nFor example: ");
         System.out.println("Bob: UBC 2022, Sauder 2021, BUCS");
+    }
+
+    // ------------------------- GETTERS AND SETTERS -------------------------
+
+    public ArrayList<Person> getPeople() {
+        return people;
     }
 }

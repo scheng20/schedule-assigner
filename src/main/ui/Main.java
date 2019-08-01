@@ -11,9 +11,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    // TODO: Remove testPaths in final version of program
     // For testing purposes
     static String sLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\BizTechScheduleInput.txt";
+
     static String savePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\ScheduleOutput.txt";
 
@@ -26,6 +28,7 @@ public class Main {
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);
 
+    // Current UI of the program
     public static void main(String[] args) throws IOException, FileException {
 
         // Some variables
@@ -61,6 +64,8 @@ public class Main {
 
     }
 
+    // EFFECTS: Loads the given filePath's content into the given CustomFile;
+    //          Catches and handles any exceptions the file loading process may throw
     public static void loadTo(String filePath, CustomFile fileType) {
 
         while (true) {
@@ -78,6 +83,7 @@ public class Main {
 
     }
 
+    // EFFECTS: Computes the assignment of the people to the schedule
     public static void runAssignment(PeopleFile p, ScheduleFile s) {
 
         PostAssigner machine = new PostAssigner(p,s);

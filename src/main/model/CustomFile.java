@@ -18,7 +18,10 @@ public abstract class CustomFile implements Readable, Saveable {
     protected FileWriter writer;
     protected Scanner scanner;
 
-    // Reading (loading) the file
+    // MODIFIES: this
+    // EFFECTS: Opens and reads the file specified by the given path.
+    //          Throws FileNotFoundException if file a file is not found in the given path.
+    //          Throws FileException if any other type of file exception occurs.
     public void readFile(String path) throws FileNotFoundException, FileException {
 
         file = new java.io.File(path);
@@ -34,7 +37,7 @@ public abstract class CustomFile implements Readable, Saveable {
 
     }
 
-    // Writing (saving) the file
+    // EFFECTS: Saves the given contents into a text file.
     public void saveFile(String path, String content) throws IOException {
         writer = new FileWriter(path);
 
@@ -42,6 +45,7 @@ public abstract class CustomFile implements Readable, Saveable {
         writer.close();
     }
 
+    // EFFECTS: Handles the different types of file exceptions and prints out corresponding messages for exceptions.
     public void handleException(Exception e) {
 
         if (e instanceof FileNotFoundException) {
@@ -61,6 +65,8 @@ public abstract class CustomFile implements Readable, Saveable {
             System.out.println("Once you have done so, please re-enter the file's location: ");
         }
     }
+
+    // ------------------------------ ABSTRACT METHODS -------------------------------
 
     public abstract void processDetails() throws FileNotFoundException, IncorrectFormatException;
 
