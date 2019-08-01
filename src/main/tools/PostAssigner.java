@@ -32,7 +32,12 @@ public class PostAssigner {
 
         people = p.getPeople();
         schedule = s.getSchedule();
+
+        distinctToBeSharedGroups = new ArrayList<Group>();
+        allGroupsPeopleAreIn = new ArrayList<Group>();
         rareGroups = new ArrayList<Group>();
+
+
     }
 
     // MODIFIES: this
@@ -41,7 +46,7 @@ public class PostAssigner {
     public void assignPosts() {
 
         // Note to self:
-        // The current algorithm isn't perfect but it gets the job done for now!
+        // Algorithm isn't perfect but it gets the job done. More improvements can be made in the future
 
         findAllDistinctToBeSharedGroups();
         findAllGroupsPeopleAreApartOf();
@@ -106,15 +111,12 @@ public class PostAssigner {
 
             // compare how many instances of this group occurs in allPeopleAreInList
             for (Group gp: allGroupsPeopleAreIn) {
-
                 if (g.equals(gp)) {
                     peopleCount++;
                 }
-
             }
 
             // If this group only appears once then it is a rare group
-
             if (peopleCount == 1) {
                 rareGroups.add(g);
             } else if (peopleCount < 1) {
@@ -123,11 +125,9 @@ public class PostAssigner {
 
             // Reset the people count
             peopleCount = 0;
-
         }
 
         this.rareGroups = rareGroups;
-
     }
 
     // MODIFIES: this
@@ -188,12 +188,8 @@ public class PostAssigner {
                         }
                     }
                 }
-
             }
-
         }
-
-
     }
 
     // EFFECTS: Prints the schedule and all of its assignments
