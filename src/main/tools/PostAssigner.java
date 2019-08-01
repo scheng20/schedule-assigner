@@ -22,10 +22,8 @@ public class PostAssigner {
     ArrayList<Person> people;
     Map<String, ArrayList<Group>> schedule;
 
-    // For storing the groups that are needed as a part of the process for assigning the posts
-    ArrayList<Group> distinctToBeSharedGroups;
-    ArrayList<Group> allGroupsPeopleAreIn;
-    ArrayList<Group> rareGroups;
+    // For Finding the information needed to process the assignment algorithm
+    PostFinder postFinder;
 
     // Constructs a new post assigner
     public PostAssigner(PeopleFile p, ScheduleFile s) {
@@ -33,10 +31,7 @@ public class PostAssigner {
         people = p.getPeople();
         schedule = s.getSchedule();
 
-        distinctToBeSharedGroups = new ArrayList<Group>();
-        allGroupsPeopleAreIn = new ArrayList<Group>();
-        rareGroups = new ArrayList<Group>();
-
+        postFinder = new PostFinder(schedule, people);
 
     }
 
@@ -48,11 +43,11 @@ public class PostAssigner {
         // Note to self:
         // Algorithm isn't perfect but it gets the job done. More improvements can be made in the future
 
-        findAllDistinctToBeSharedGroups();
-        findAllGroupsPeopleAreApartOf();
+        postFinder.findAllDistinctToBeSharedGroups();
+        postFinder.findAllGroupsPeopleAreApartOf();
 
         try {
-            findRareGroups();
+            postFinder.findRareGroups();
             assignRareGroups();
             assignRestOfGroups();
             printAssignedSchedule();
@@ -64,75 +59,10 @@ public class PostAssigner {
     }
 
     // MODIFIES: this
-    // EFFECTS: finds all of the distinct groups that exists in the sharing schedule
-    public void findAllDistinctToBeSharedGroups() {
-
-        ArrayList<Group> allDistinctTobeSharedGroups = new ArrayList<Group>();
-
-        for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
-
-            ArrayList<Group> currentDayGroups = entry.getValue();
-
-            for (Group g: currentDayGroups) {
-
-                if (!allDistinctTobeSharedGroups.contains(g)) {
-                    allDistinctTobeSharedGroups.add(g);
-                }
-            }
-        }
-
-        this.distinctToBeSharedGroups = allDistinctTobeSharedGroups;
-
-    }
-
-    // MODIFIES: this
-    // EFFECTS: finds all the groups that people are a part of stacked together in a list
-    public void findAllGroupsPeopleAreApartOf() {
-
-        ArrayList<Group> allGroupsPeopleAreIn = new ArrayList<>();
-
-        for (Person p: people) {
-            allGroupsPeopleAreIn.addAll(p.getGroups());
-        }
-
-        this.allGroupsPeopleAreIn = allGroupsPeopleAreIn;
-
-    }
-
-    // MODIFIES: this
-    // EFFECTS: finds a list of groups where only 1 person is a part of the group
-    public void findRareGroups() throws NoPersonInGroupException {
-
-        ArrayList<Group> rareGroups = new ArrayList<Group>();
-
-        int peopleCount = 0;
-
-        for (Group g: distinctToBeSharedGroups) {
-
-            // compare how many instances of this group occurs in allPeopleAreInList
-            for (Group gp: allGroupsPeopleAreIn) {
-                if (g.equals(gp)) {
-                    peopleCount++;
-                }
-            }
-
-            // If this group only appears once then it is a rare group
-            if (peopleCount == 1) {
-                rareGroups.add(g);
-            } else if (peopleCount < 1) {
-                throw new NoPersonInGroupException();
-            }
-
-            // Reset the people count
-            peopleCount = 0;
-        }
-
-        this.rareGroups = rareGroups;
-    }
-
-    // MODIFIES: this
     // EFFECTS: Finds and assigns appropriate people to the rare groups
     public void assignRareGroups() {
+
+        ArrayList<Group> rareGroups = postFinder.getRareGroups();
 
         // Directly assign the people who have the rare group to the rare group in the schedule
         for (Group rg: rareGroups) {
@@ -211,16 +141,9 @@ public class PostAssigner {
 
     // ------------------------- GETTERS AND SETTERS -------------------------
 
-    public ArrayList<Group> getDistinctToBeSharedGroups() {
-        return distinctToBeSharedGroups;
-    }
-
-    public ArrayList<Group> getAllGroupsPeopleAreIn() {
-        return allGroupsPeopleAreIn;
-    }
-
-    public ArrayList<Group> getRareGroups() {
-        return rareGroups;
+    // This setter is here to make testing easier
+    public void setPostFinder(PostFinder pf) {
+        this.postFinder = pf;
     }
 
     public Map<String, ArrayList<Group>> getSchedule() {

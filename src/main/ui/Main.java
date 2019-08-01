@@ -31,7 +31,7 @@ public class Main {
     // Current UI of the program
     public static void main(String[] args) throws IOException, FileException {
 
-        // Some variables
+        // Stores the filePath of the files being loaded
         String filePath;
 
         //Intro
@@ -59,6 +59,7 @@ public class Main {
 
         loadTo(filePath, s);
 
+        // TODO: actually run the assignment depending on what the user inputs
         System.out.println("Assign these people to the given schedule? (Y/N)");
         runAssignment(p, s);
 

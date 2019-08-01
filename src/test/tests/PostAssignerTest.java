@@ -9,6 +9,7 @@ import model.ScheduleFile;
 import org.junit.Before;
 import org.junit.Test;
 import tools.PostAssigner;
+import tools.PostFinder;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,17 +18,20 @@ import java.util.Map;
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 public class PostAssignerTest {
 
     private PeopleFile peopleInput;
     private ScheduleFile scheduleInput;
+
+    private PostAssigner PA;
+    private PostFinder PF;
+
     private Group Arts_2022;
     private Group BUCS;
     private Group Sauder_2023;
     private Group UBC_2022;
-    private PostAssigner PA;
+    private Person p1;
 
     @Before
     public void setUp() throws FileNotFoundException, FileException {
@@ -38,163 +42,58 @@ public class PostAssignerTest {
         peopleInput.readFile("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\project_scheng20\\storage\\testPeopleInput.txt");
         scheduleInput.readFile("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\project_scheng20\\storage\\testScheduleInput.txt");
 
-        // Instantiate the PostAssigner
+        // Instantiate the PostAssigner & PostFinder
         PA = new PostAssigner(peopleInput, scheduleInput);
+        PF = new PostFinder(scheduleInput.getSchedule(), peopleInput.getPeople());
+
+        // Establish the correct relationship for easy testing
+        PA.setPostFinder(PF);
 
         Arts_2022 = new Group("Arts 2022");
         BUCS = new Group ("BUCS");
         Sauder_2023 = new Group ("Sauder 2023");
         UBC_2022 = new Group ("UBC 2022");
-    }
 
-    @Test
-    public void testFindDistinctGroups() {
-
-        PA.findAllDistinctToBeSharedGroups();
-
-        ArrayList<Group> result = PA.getDistinctToBeSharedGroups();
-
-        assertEquals(4, result.size());
-
-        assertTrue(result.contains(Arts_2022));
-        assertTrue(result.contains(BUCS));
-        assertTrue(result.contains(Sauder_2023));
-        assertTrue(result.contains(UBC_2022));
-
-    }
-
-    @Test
-    public void testFindAllGroupsPeopleAreApartOf() {
-
-        PA.findAllGroupsPeopleAreApartOf();
-
-        ArrayList<Group> result = PA.getAllGroupsPeopleAreIn();
-
-        assertEquals(6, result.size());
-        assertTrue(result.contains(Arts_2022));
-        assertTrue(result.contains(BUCS));
-        assertTrue(result.contains(Sauder_2023));
-        assertTrue(result.contains(UBC_2022));
-
-        int testCount = 0;
-
-        for (Group g: result) {
-
-            if (g.equals(UBC_2022)) {
-                testCount++;
-            }
-        }
-
-        assertTrue(testCount == 2);
-
-        testCount = 0;
-
-        for (Group g: result) {
-            if (g.equals(Sauder_2023)) {
-                testCount++;
-            }
-        }
-
-        assertTrue(testCount == 2);
-
-    }
-
-    @Test
-    public void testFindRareGroupNoException() {
-        try {
-            // These methods must be called before findRareGroups can be called
-            PA.findAllDistinctToBeSharedGroups();
-            PA.findAllGroupsPeopleAreApartOf();
-
-            PA.findRareGroups();
-
-            ArrayList<Group> result = PA.getRareGroups();
-
-            assertEquals(2, result.size());
-            assertTrue(result.contains(Arts_2022));
-            assertTrue(result.contains(BUCS));
-            assertFalse(result.contains(Sauder_2023));
-
-        } catch (NoPersonInGroupException e) {
-            fail();
-        }
-
-    }
-
-    // TODO: testFindRareGroupThrowException
-    @Test
-    public void testFindRareGroupThrowException() {
-
-
-
+        p1 = new Person("Bob");
     }
 
     @Test
     public void testAssignGroupToPersonInSchedule() {
 
-        Person p1 = new Person("Bob");
-
         PA.assignGroupToPersonInSchedule(Arts_2022, p1);
 
         Map<String, ArrayList<Group>> schedule = PA.getSchedule();
 
-        // Point for Single Responsibility thing!
-        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
-
-            ArrayList<Group> currentDayGroups = entry.getValue();
-
-            for (Group g: currentDayGroups) {
-
-                if (currentDayGroups.contains(Arts_2022)) {
-
-                    int searchIndex = currentDayGroups.indexOf(Arts_2022);
-                    Group target = currentDayGroups.get(searchIndex);
-
-                    assertTrue(target.isAssigned());
-                    assertEquals(target.getPersonResponsible(), p1);
-
-                }
-
-            }
-        }
+        searchAndVerify(schedule,null,"normal");
 
     }
 
     @Test
     public void testAssignRareGroups() {
 
-        PA.findAllDistinctToBeSharedGroups();
-        PA.findAllGroupsPeopleAreApartOf();
+        PF.findAllDistinctToBeSharedGroups();
+        PF.findAllGroupsPeopleAreApartOf();
+
         try {
 
-            PA.findRareGroups();
+            PF.findRareGroups();
             PA.assignRareGroups();
 
-            ArrayList<Group> rareGroups = PA.getRareGroups();
+            ArrayList<Group> rareGroups = PF.getRareGroups();
             Map<String, ArrayList<Group>> schedule = PA.getSchedule();
 
-            // Point for Single Responsibility thing!
-            for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
-
-                ArrayList<Group> currentDayGroups = entry.getValue();
-
-                for (Group rg: rareGroups) {
-
-                    if (currentDayGroups.contains(rg)){
-
-                        int searchIndex = currentDayGroups.indexOf(rg);
-                        Group target = currentDayGroups.get(searchIndex);
-                        assertTrue(target.isAssigned());
-
-                    }
-
-                }
-            }
+            searchAndVerify(schedule,rareGroups,"rare");
 
         } catch (NoPersonInGroupException e) {
             fail();
         }
 
+    }
+
+    // TODO: testAssignPosts
+    @Test
+    public void testAssignPosts() {
+        PA.assignPosts();
     }
 
     // TODO: testPrintAssignedSchedule
@@ -203,10 +102,40 @@ public class PostAssignerTest {
         PA.printAssignedSchedule();
     }
 
-    // TODO: testAssignPosts
-    @Test
-    public void testAssignPosts() {
-        PA.assignPosts();
+    // Helper method!
+    public void searchAndVerify(Map<String,ArrayList<Group>> schedule, ArrayList<Group> searchedGroup, String type) {
+
+        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
+
+            ArrayList<Group> currentDayGroups = entry.getValue();
+
+            // Changes the group list based on search type
+            if (type.equalsIgnoreCase("normal")){
+                searchedGroup = currentDayGroups;
+
+            }
+
+            for (Group g: searchedGroup) {
+
+                // Changes the comparsion based on search type
+                if (type.equalsIgnoreCase(("normal"))) {
+                    g = Arts_2022;
+                }
+
+                if (currentDayGroups.contains(g)){
+
+                    int searchIndex = currentDayGroups.indexOf(g);
+                    Group target = currentDayGroups.get(searchIndex);
+                    assertTrue(target.isAssigned());
+
+                    // Changes the assertions based on search type
+                    if (type.equalsIgnoreCase("normal")) {
+                        assertEquals(target.getPersonResponsible(), p1);
+                    }
+
+                }
+            }
+        }
     }
 
 }
