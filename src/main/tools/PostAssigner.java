@@ -50,7 +50,6 @@ public class PostAssigner {
             postFinder.findRareGroups();
             assignRareGroups();
             assignRestOfGroups();
-            printAssignedSchedule();
 
         } catch (NoPersonInGroupException e) {
             System.out.println("There is a group that needs to be shared but you don't have anyone suitable to do so!");
@@ -118,23 +117,6 @@ public class PostAssigner {
                         }
                     }
                 }
-            }
-        }
-    }
-
-    // EFFECTS: Prints the schedule and all of its assignments
-    public void printAssignedSchedule() {
-        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
-            System.out.println();
-            System.out.println("Date: " + entry.getKey());
-            System.out.println("Groups: ");
-
-            ArrayList<Group> currentDayGroup = entry.getValue();
-
-            for (Group g: currentDayGroup) {
-                System.out.println("Group Name: " + g.getName());
-                System.out.println("Person Responsible: " + g.getPersonResponsible().getName());
-                System.out.println();
             }
         }
     }

@@ -90,8 +90,11 @@ public class PostFinder {
 
             // If this group only appears once then it is a rare group
             if (peopleCount == 1) {
+
                 rareGroups.add(g);
+
             } else if (peopleCount < 1) {
+
                 throw new NoPersonInGroupException();
             }
 

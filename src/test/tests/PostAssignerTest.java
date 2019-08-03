@@ -18,6 +18,7 @@ import java.util.Map;
 import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class PostAssignerTest {
 
@@ -90,16 +91,28 @@ public class PostAssignerTest {
 
     }
 
-    // TODO: testAssignPosts
     @Test
-    public void testAssignPosts() {
+    public void testAssignPostsNoException() {
+
         PA.assignPosts();
+
+        for (Person p: peopleInput.getPeople()) {
+            assertTrue(p.hasGroupAssigned());
+        }
     }
 
-    // TODO: testPrintAssignedSchedule
     @Test
-    public void testPrintAssignedSchedule() {
-        PA.printAssignedSchedule();
+    public void testAssignPostsCaughtException() {
+
+        Group testGroup = new Group("GROUP THAT NO ONE BELONGS TO!");
+        scheduleInput.addGroupToDay("July 2", testGroup);
+
+        PA.assignPosts();
+
+        for (Person p: peopleInput.getPeople()) {
+            assertFalse(p.hasGroupAssigned());
+        }
+
     }
 
     // Helper method!

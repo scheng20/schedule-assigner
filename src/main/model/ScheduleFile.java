@@ -68,6 +68,13 @@ public class ScheduleFile extends CustomFile {
         return output;
     }
 
+    // EFFECTS: Adds a group to the given day's list of groups
+    // Mostly used for testing purposes
+    public void addGroupToDay(String date, Group group) {
+        ArrayList<Group> currentDayGroups = schedule.get(date);
+        currentDayGroups.add(group);
+    }
+
     // EFFECTS: prints out the contents of the schedule
     public void printContents() {
 

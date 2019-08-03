@@ -2,11 +2,14 @@ package ui;
 
 import exceptions.FileException;
 import model.CustomFile;
+import model.Group;
 import model.PeopleFile;
 import model.ScheduleFile;
 import tools.PostAssigner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -16,14 +19,8 @@ public class Main {
     static String sLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\BizTechScheduleInput.txt";
 
-    static String savePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\ScheduleOutput.txt";
-
     static String pLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
             + "project_scheng20\\storage\\BizTechPeopleInput.txt";
-
-    static String pSavePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\PeopleOutput.txt";
 
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);
@@ -87,8 +84,29 @@ public class Main {
     // EFFECTS: Computes the assignment of the people to the schedule
     public static void runAssignment(PeopleFile p, ScheduleFile s) {
 
-        PostAssigner machine = new PostAssigner(p,s);
-        machine.assignPosts();
+        PostAssigner postAssigner = new PostAssigner(p,s);
+        postAssigner.assignPosts();
+
+        printAssignedSchedule(postAssigner.getSchedule());
+
+    }
+
+    // EFFECTS: Prints out the given schedule and all of its assignments
+    public static void printAssignedSchedule(Map<String, ArrayList<Group>> schedule) {
+
+        for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
+            System.out.println();
+            System.out.println("Date: " + entry.getKey());
+            System.out.println("Groups: ");
+
+            ArrayList<Group> currentDayGroup = entry.getValue();
+
+            for (Group g: currentDayGroup) {
+                System.out.println("Group Name: " + g.getName());
+                System.out.println("Person Responsible: " + g.getPersonResponsible().getName());
+                System.out.println();
+            }
+        }
     }
 
 }

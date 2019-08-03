@@ -69,7 +69,7 @@ public class PostFinderTest {
 
         ArrayList<Group> result = PF.getAllGroupsPeopleAreIn();
 
-        assertEquals(6, result.size());
+        assertEquals(8, result.size());
         assertTrue(result.contains(Arts_2022));
         assertTrue(result.contains(BUCS));
         assertTrue(result.contains(Sauder_2023));
@@ -84,7 +84,7 @@ public class PostFinderTest {
             }
         }
 
-        assertTrue(testCount == 2);
+        assertTrue(testCount == 3);
 
         testCount = 0;
 
@@ -94,7 +94,7 @@ public class PostFinderTest {
             }
         }
 
-        assertTrue(testCount == 2);
+        assertTrue(testCount == 3);
 
     }
 
@@ -124,7 +124,21 @@ public class PostFinderTest {
     @Test
     public void testFindRareGroupThrowException() {
 
+        Group testGroup = new Group("GROUP THAT NO ONE BELONGS TO!");
+        scheduleInput.addGroupToDay("July 2", testGroup);
 
+        try {
+            // These methods must be called before findRareGroups can be called
+            PF.findAllDistinctToBeSharedGroups();
+            PF.findAllGroupsPeopleAreApartOf();
+
+            PF.findRareGroups();
+
+            fail();
+
+        } catch (NoPersonInGroupException e) {
+            // GOOD
+        }
 
     }
 }
