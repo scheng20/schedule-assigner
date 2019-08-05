@@ -5,12 +5,12 @@ import exceptions.FileException;
 import exceptions.IncorrectFormatException;
 import model.PeopleFile;
 import model.ScheduleFile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-import static junit.framework.TestCase.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ExceptionsTest {
 
@@ -22,20 +22,22 @@ public class ExceptionsTest {
     String badFormatFilePath;
     String workingFilePath;
 
-    @Before
+    @BeforeEach
     public void setUp() {
 
         schedule = new ScheduleFile();
         people = new PeopleFile();
 
         nonExistFilePath = "";
+
         emptyFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\testSave.txt";
+                + "Personal Project\\project_scheng20\\storage\\justEmpty.txt";
+
         badFormatFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\testLoad.txt";
+                + "Personal Project\\project_scheng20\\storage\\poorFormat.txt";
 
         workingFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\ScheduleInput.txt";
+                + "Personal Project\\project_scheng20\\storage\\testScheduleInput.txt";
     }
 
     @Test

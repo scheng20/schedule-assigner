@@ -6,8 +6,8 @@ import model.Group;
 import model.PeopleFile;
 import model.Person;
 import model.ScheduleFile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import tools.PostAssigner;
 import tools.PostFinder;
 
@@ -15,10 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PostAssignerTest {
 
@@ -34,7 +31,7 @@ public class PostAssignerTest {
     private Group UBC_2022;
     private Person p1;
 
-    @Before
+    @BeforeEach
     public void setUp() throws FileNotFoundException, FileException {
         peopleInput = new PeopleFile();
         scheduleInput = new ScheduleFile();

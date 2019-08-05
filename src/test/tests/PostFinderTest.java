@@ -5,17 +5,14 @@ import exceptions.NoPersonInGroupException;
 import model.Group;
 import model.PeopleFile;
 import model.ScheduleFile;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import tools.PostFinder;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PostFinderTest {
 
@@ -27,7 +24,7 @@ public class PostFinderTest {
     private Group UBC_2022;
     private PostFinder PF;
 
-    @Before
+    @BeforeEach
     public void setUp() throws FileNotFoundException, FileException {
         peopleInput = new PeopleFile();
         scheduleInput = new ScheduleFile();

@@ -1,22 +1,20 @@
 package tests;
 
 import model.Group;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import tools.LineAnalyzer;
 
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LineAnalyzerTest {
 
     private LineAnalyzer LA;
     private String target;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         LA = new LineAnalyzer();
         target = "July 2: UBC 2022, BUCS, Science 2022";

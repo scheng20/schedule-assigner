@@ -5,16 +5,13 @@ import exceptions.IncorrectFormatException;
 import model.Group;
 import model.PeopleFile;
 import model.Person;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static junit.framework.TestCase.assertTrue;
-import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleFileTest {
 
@@ -24,7 +21,7 @@ public class PeopleFileTest {
     String emptyfilePath;
     String savePath;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         PF = new PeopleFile();
 
