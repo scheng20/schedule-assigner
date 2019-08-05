@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class Main {
 
-    // TODO: Remove testPaths in final version of program
     // For testing purposes
     static String sLoadPath = ".\\storage\\BizTechScheduleInput.txt";
 
@@ -36,7 +35,7 @@ public class Main {
         System.out.println("Please enter the location of the people file you want to load: ");
         PeopleFile p = new PeopleFile();
 
-        // TODO: change the loadPath input once testing is done!
+        // NOTE: current file path is fixed
         //filePath = input.nextLine();
         filePath = pLoadPath;
 
@@ -48,14 +47,15 @@ public class Main {
         System.out.println("Please enter the location of the schedule file you want to load: ");
         ScheduleFile s = new ScheduleFile();
 
-        // TODO: change the loadPath input once testing is done!
+        // NOTE: current file path is fixed
         //filePath = input.nextLine();
         filePath = sLoadPath;
 
         loadTo(filePath, s);
 
-        // TODO: actually run the assignment depending on what the user inputs
-        System.out.println("Assign these people to the given schedule? (Y/N)");
+
+        System.out.println("Computing Assignments!");
+
         runAssignment(p, s);
 
     }

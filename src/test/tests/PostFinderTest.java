@@ -117,7 +117,6 @@ public class PostFinderTest {
 
     }
 
-    // TODO: testFindRareGroupThrowException
     @Test
     public void testFindRareGroupThrowException() {
 
