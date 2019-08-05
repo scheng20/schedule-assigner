@@ -16,11 +16,9 @@ public class Main {
 
     // TODO: Remove testPaths in final version of program
     // For testing purposes
-    static String sLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\BizTechScheduleInput.txt";
+    static String sLoadPath = ".\\storage\\BizTechScheduleInput.txt";
 
-    static String pLoadPath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-            + "project_scheng20\\storage\\BizTechPeopleInput.txt";
+    static String pLoadPath = ".\\storage\\BizTechPeopleInput.txt";
 
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);

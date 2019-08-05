@@ -25,15 +25,13 @@ public class PeopleFileTest {
     public void setUp() {
         PF = new PeopleFile();
 
-        goodfilePath =  "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\testPeopleInput.txt";
-        badFormatFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\poorFormat.txt";
-        emptyfilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\justEmpty.txt";
+        goodfilePath = ".\\storage\\testPeopleInput.txt";
 
-        savePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\testSave.txt";
+        badFormatFilePath = ".\\storage\\poorFormat.txt";
+
+        emptyfilePath = ".\\storage\\justEmpty.txt";
+
+        savePath = ".\\storage\\testSave.txt";
     }
 
     @Test

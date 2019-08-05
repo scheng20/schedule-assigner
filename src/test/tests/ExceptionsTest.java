@@ -30,14 +30,11 @@ public class ExceptionsTest {
 
         nonExistFilePath = "";
 
-        emptyFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\justEmpty.txt";
+        emptyFilePath = ".\\storage\\justEmpty.txt";
 
-        badFormatFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\poorFormat.txt";
+        badFormatFilePath = ".\\storage\\poorFormat.txt";
 
-        workingFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\"
-                + "Personal Project\\project_scheng20\\storage\\testScheduleInput.txt";
+        workingFilePath = ".\\storage\\testScheduleInput.txt";
     }
 
     @Test

@@ -22,11 +22,9 @@ public class ScheduleFileTest {
 
         SF = new ScheduleFile();
 
-        goodfilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\testScheduleInput.txt";
+        goodfilePath = ".\\storage\\testScheduleInput.txt";
 
-        badFormatFilePath = "D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\"
-                + "project_scheng20\\storage\\poorFormat.txt";
+        badFormatFilePath = ".\\storage\\poorFormat.txt";
 
         // Read and get the file's contents
         try {

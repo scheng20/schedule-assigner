@@ -37,8 +37,8 @@ public class PostAssignerTest {
         scheduleInput = new ScheduleFile();
 
         // This setup might needs to be changed in the future to avoid using local file paths
-        peopleInput.readFile("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\project_scheng20\\storage\\testPeopleInput.txt");
-        scheduleInput.readFile("D:\\Programming Projects\\Intellij IDEA Workspace\\UBC CPSC 210\\Personal Project\\project_scheng20\\storage\\testScheduleInput.txt");
+        peopleInput.readFile(".\\storage\\testPeopleInput.txt");
+        scheduleInput.readFile(".\\storage\\testScheduleInput.txt");
 
         // Instantiate the PostAssigner & PostFinder
         PA = new PostAssigner(peopleInput, scheduleInput);
