@@ -68,10 +68,9 @@ public class Controller {
 
         // Step 2: Associate data with columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
-        groupColumn.setCellValueFactory(new PropertyValueFactory<Person, ArrayList<Group>>("isInGroups"));
+        //groupColumn.setCellValueFactory(new PropertyValueFactory<Person, ArrayList<Group>>("isInGroups"));
 
         peopleTable.setItems(getPeopleForTable());
-        peopleTable.getColumns().addAll(nameColumn, groupColumn);
 
     }
 
@@ -79,7 +78,11 @@ public class Controller {
 
         ObservableList<Person> people = FXCollections.observableArrayList();
 
-        people.addAll(peopleFile.getPeople());
+        for (Person p: peopleFile.getPeople()) {
+            people.add(p);
+        }
+
+        //people.addAll(peopleFile.getPeople());
 
         return people;
 
