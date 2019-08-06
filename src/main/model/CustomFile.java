@@ -7,9 +7,10 @@ import exceptions.IncorrectFormatException;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Observable;
 import java.util.Scanner;
 
-public abstract class CustomFile implements Readable, Saveable {
+public abstract class CustomFile extends Observable implements Readable, Saveable {
 
     // For opening and reading the file
     protected java.io.File file; // This is the variable that the file is stored in

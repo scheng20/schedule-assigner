@@ -78,9 +78,10 @@ public class ScheduleFile extends CustomFile {
     // EFFECTS: prints out the contents of the schedule
     public void printContents() {
 
-        System.out.println("File loaded successfully! Here are its contents:");
+        System.out.println("File loaded successfully! Here are its contents: ");
 
         System.out.println("\nSchedule (unassigned): ");
+        System.out.println("-----------");
 
         for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
 
@@ -89,6 +90,8 @@ public class ScheduleFile extends CustomFile {
             ArrayList<String> groupsAsString = getGroupsAsString(entry.getValue());
 
             System.out.println("Groups: " + groupsAsString);
+
+            System.out.println("-----------");
         }
 
     }

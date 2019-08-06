@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.IncorrectFormatException;
+import observer.PeopleTracker;
 import tools.LineAnalyzer;
 
 import java.io.FileNotFoundException;
@@ -15,10 +16,16 @@ public class PeopleFile extends CustomFile {
     // For analyzing the lines
     private LineAnalyzer lineReader;
 
+    // For retrieving the statistics
+    private PeopleTracker peopleTracker;
+
     // Constructs a new people file
     public PeopleFile() {
         this.people = new ArrayList<Person>();
         this.lineReader = new LineAnalyzer();
+        this.peopleTracker = new PeopleTracker();
+
+        addObserver(peopleTracker);
     }
 
     // MODIFIES: this
@@ -47,6 +54,10 @@ public class PeopleFile extends CustomFile {
 
                 // Add the person object to the list of people
                 people.add(p);
+
+                // Trigger the observation and keep track of how many people have been added
+                setChanged();
+                notifyObservers(p);
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -61,13 +72,15 @@ public class PeopleFile extends CustomFile {
     // EFFECTS: prints out the contents of the people file
     public void printContents() {
 
-        System.out.println("File loaded successfully! Here are its contents:");
+        System.out.println("File loaded successfully! Here are its contents: ");
 
         System.out.println("\nPeople: ");
+        System.out.println("-----------");
 
         for (Person p: people) {
             System.out.println("Name: " + p.getName());
             System.out.println("Groups:" + p.getGroupsAsStrings());
+            System.out.println("-----------");
         }
     }
 
@@ -78,6 +91,12 @@ public class PeopleFile extends CustomFile {
         System.out.println("Name: Group1, Group2, Group3");
         System.out.println("\nFor example: ");
         System.out.println("Bob: UBC 2022, Sauder 2021, BUCS");
+    }
+
+    public void printStats() {
+
+        System.out.println("The total number of people is: " + peopleTracker.getTotalPeople() + " people");
+
     }
 
     // ------------------------- GETTERS AND SETTERS -------------------------

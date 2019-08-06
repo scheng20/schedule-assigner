@@ -6,6 +6,7 @@ import model.Group;
 import model.PeopleFile;
 import model.ScheduleFile;
 import tools.PostAssigner;
+import tools.WebReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class Main {
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);
 
+    // FOR WEEK 10 DELIVERABLE
+    static WebReader wb = new WebReader();
+
     // Current UI of the program
     public static void main(String[] args) throws IOException, FileException {
 
@@ -29,34 +33,35 @@ public class Main {
         String filePath;
 
         //Intro
-        System.out.println("Welcome to schedule assigner! \n");
+        System.out.println("================ INTRO =======================");
+        wb.readWeb();
+        System.out.println("Welcome to schedule assigner!");
 
-        // Ask for user input of data
+        // Ask for user input of people data
+        System.out.println("\n================ PEOPLE INPUT ================");
         System.out.println("Please enter the location of the people file you want to load: ");
         PeopleFile p = new PeopleFile();
 
-        // NOTE: current file path is fixed
+        // NOTE: current file path is fixed!!!
         //filePath = input.nextLine();
         filePath = pLoadPath;
-
         loadTo(filePath, p);
 
-        System.out.println("\n");
-
-
+        // Ask for user input of the schedule data
+        System.out.println("\n================ SCHEDULE INPUT ================");
         System.out.println("Please enter the location of the schedule file you want to load: ");
         ScheduleFile s = new ScheduleFile();
 
-        // NOTE: current file path is fixed
+        // NOTE: current file path is fixed!!!
         //filePath = input.nextLine();
         filePath = sLoadPath;
-
         loadTo(filePath, s);
 
-
-        System.out.println("Computing Assignments!");
-
+        // Run the assignments
         runAssignment(p, s);
+
+        // Print the statistics
+        printStatistics(p, s);
 
     }
 
@@ -82,6 +87,9 @@ public class Main {
     // EFFECTS: Computes the assignment of the people to the schedule
     public static void runAssignment(PeopleFile p, ScheduleFile s) {
 
+        System.out.println("\n================ ASSIGNED SCHEDULE ================");
+        System.out.println("Computing Assignments...");
+
         PostAssigner postAssigner = new PostAssigner(p,s);
         postAssigner.assignPosts();
 
@@ -92,10 +100,12 @@ public class Main {
     // EFFECTS: Prints out the given schedule and all of its assignments
     public static void printAssignedSchedule(Map<String, ArrayList<Group>> schedule) {
 
+        System.out.println("Below is the assigned schedule:");
+        System.out.println("-----------");
+
         for (Map.Entry<String, ArrayList<Group>> entry: schedule.entrySet()) {
             System.out.println();
             System.out.println("Date: " + entry.getKey());
-            System.out.println("Groups: ");
 
             ArrayList<Group> currentDayGroup = entry.getValue();
 
@@ -104,7 +114,16 @@ public class Main {
                 System.out.println("Person Responsible: " + g.getPersonResponsible().getName());
                 System.out.println();
             }
+
+            System.out.println("-----------");
         }
+    }
+
+    public static void printStatistics(PeopleFile p, ScheduleFile s) {
+
+        System.out.println("\n================ STATISTICS ================");
+        p.printStats();
+
     }
 
 }

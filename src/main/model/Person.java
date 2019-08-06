@@ -92,4 +92,10 @@ public class Person {
     public int hashCode() {
         return Objects.hash(name, isInGroups);
     }
+
+    // ------------------------- OVERRIDING TO STRING -------------------------
+    @Override
+    public String toString() {
+        return name;
+    }
 }
