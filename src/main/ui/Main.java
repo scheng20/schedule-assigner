@@ -16,9 +16,9 @@ import java.util.Scanner;
 public class Main {
 
     // For testing purposes
-    static String sLoadPath = ".\\storage\\BizTechScheduleInput.txt";
+    static String sLoadPath = ".\\src\\test\\storage\\BizTechScheduleInput.txt";
 
-    static String pLoadPath = ".\\storage\\BizTechPeopleInput.txt";
+    static String pLoadPath = ".\\src\\test\\storage\\BizTechPeopleInput.txt";
 
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);

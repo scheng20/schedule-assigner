@@ -22,9 +22,9 @@ public class ScheduleFileTest {
 
         SF = new ScheduleFile();
 
-        goodfilePath = ".\\storage\\testScheduleInput.txt";
+        goodfilePath = ".\\src\\test\\storage\\testScheduleInput.txt";
 
-        badFormatFilePath = ".\\storage\\poorFormat.txt";
+        badFormatFilePath = ".\\src\\test\\storage\\poorFormat.txt";
 
         // Read and get the file's contents
         try {

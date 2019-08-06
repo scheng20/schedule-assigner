@@ -37,8 +37,8 @@ public class PostAssignerTest {
         scheduleInput = new ScheduleFile();
 
         // This setup might needs to be changed in the future to avoid using local file paths
-        peopleInput.readFile(".\\storage\\testPeopleInput.txt");
-        scheduleInput.readFile(".\\storage\\testScheduleInput.txt");
+        peopleInput.readFile(".\\src\\test\\storage\\testPeopleInput.txt");
+        scheduleInput.readFile(".\\src\\test\\storage\\testScheduleInput.txt");
 
         // Instantiate the PostAssigner & PostFinder
         PA = new PostAssigner(peopleInput, scheduleInput);
