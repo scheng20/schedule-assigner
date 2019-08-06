@@ -4,8 +4,6 @@ import model.ScheduleFile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 public class TestFile {
     ScheduleFile SF;
     String goodfilePath;
@@ -24,7 +22,7 @@ public class TestFile {
         try {
             SF.readFile(goodfilePath);
         } catch (Exception e) {
-            fail();
+
         }
     }
 
