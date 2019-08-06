@@ -12,7 +12,7 @@ public class TestFile {
     String badFormatFilePath;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
 
         SF = new ScheduleFile();
 
@@ -29,7 +29,7 @@ public class TestFile {
     }
 
     @Test
-    public void testPrintContents() {
+    void testPrintContents() {
 
         SF.getContents();
 
