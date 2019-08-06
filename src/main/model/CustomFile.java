@@ -47,31 +47,36 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
     }
 
     // EFFECTS: Handles the different types of file exceptions and prints out corresponding messages for exceptions.
-    public void handleException(Exception e) {
+    public String handleException(Exception e) {
+
+        String output = "";
 
         if (e instanceof FileNotFoundException) {
 
-            System.out.println("That file is not found! Please enter a valid location:");
+            output = "That file is not found! Please enter a valid location:";
 
         } else if (e instanceof EmptyFileException) {
-            System.out.println("File cannot be empty!");
-            System.out.println("\nPlease add some content to the file.");
-            System.out.println("Once you have done so, please re-enter the file's location: ");
+
+            output = "File cannot be empty!"
+                    + "\nPlease add some content to the file."
+                    + "\n Once you have done so, please re-enter the file's location: ";
 
         } else if (e instanceof  IncorrectFormatException) {
 
-            System.out.println("The file's contents are formatted incorrectly!");
-            getSampleFormat();
-            System.out.println("\nPlease reformat your file and try again!");
-            System.out.println("Once you have done so, please re-enter the file's location: ");
+            output = "The file's contents are formatted incorrectly! \n"
+                    + getSampleFormat()
+                    + "\nPlease reformat your file and try again!"
+                    + "Once you have done so, please re-enter the file's location: ";
         }
+
+        return output;
     }
 
     // ------------------------------ ABSTRACT METHODS -------------------------------
 
     public abstract void processDetails() throws FileNotFoundException, IncorrectFormatException;
 
-    public abstract void printContents();
+    public abstract void getContents();
 
-    public abstract void getSampleFormat();
+    public abstract String getSampleFormat();
 }

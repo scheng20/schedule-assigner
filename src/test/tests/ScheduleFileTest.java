@@ -50,6 +50,12 @@ public class ScheduleFileTest {
     @Test
     public void testProcessDetails() {
 
+        try {
+            SF.processDetails();
+        } catch (Exception e) {
+            fail();
+        }
+
         Map<String, ArrayList<Group>> result = SF.getSchedule();
 
         Group UBC_2022 = new Group("UBC 2022");
@@ -101,7 +107,7 @@ public class ScheduleFileTest {
     @Test
     public void testPrintContents() {
 
-        SF.printContents();
+        SF.getContents();
 
     }
 

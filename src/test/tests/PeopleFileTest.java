@@ -91,6 +91,7 @@ public class PeopleFileTest {
     public void testSaveFileNoException() {
 
         try {
+
             PF.saveFile(savePath, "Bob: UBC 2022");
             PF.readFile(savePath);
 
@@ -159,7 +160,7 @@ public class PeopleFileTest {
     public void testPrintContents() {
         try {
             PF.readFile(goodfilePath);
-            PF.printContents();
+            PF.getContents();
         } catch (Exception e) {
             fail();
         }

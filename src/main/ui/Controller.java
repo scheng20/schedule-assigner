@@ -1,11 +1,15 @@
 package ui;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Group;
 import model.PeopleFile;
+import model.Person;
 import model.ScheduleFile;
+
+import java.util.ArrayList;
 
 public class Controller {
 
@@ -21,11 +25,13 @@ public class Controller {
     public TextField peopleInputField;
     public TextField scheduleInputField;
 
-    public TableView peopleTable;
+    public TableView<Person> peopleTable;
 
     public Controller() {
         peopleFile = new PeopleFile();
         scheduleFile = new ScheduleFile();
+
+        peopleTable = new TableView<>();
     }
 
     public void openFiles() {
@@ -36,7 +42,8 @@ public class Controller {
             try {
 
                 peopleFile.readFile(peopleInputField.getText());
-                peopleFile.printContents();
+                peopleFile.getContents();
+                populatePeopleTable();
 
             } catch (Exception e) {
                 peopleFile.handleException(e);
@@ -45,6 +52,36 @@ public class Controller {
         } else {
             helpLabel.setText("File paths cannot be empty!");
         }
+
+    }
+
+    public void populatePeopleTable() {
+
+        // Step 1: Create Columns
+        TableColumn<Person, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setMinWidth(200);
+
+        TableColumn<Person, ArrayList<Group>> groupColumn = new TableColumn<>("Groups");
+        groupColumn.setMinWidth(200);
+
+        peopleTable.getColumns().addAll(nameColumn, groupColumn);
+
+        // Step 2: Associate data with columns
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("name"));
+        groupColumn.setCellValueFactory(new PropertyValueFactory<Person, ArrayList<Group>>("isInGroups"));
+
+        peopleTable.setItems(getPeopleForTable());
+        peopleTable.getColumns().addAll(nameColumn, groupColumn);
+
+    }
+
+    public ObservableList<Person> getPeopleForTable() {
+
+        ObservableList<Person> people = FXCollections.observableArrayList();
+
+        people.addAll(peopleFile.getPeople());
+
+        return people;
 
     }
 

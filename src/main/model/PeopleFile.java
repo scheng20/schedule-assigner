@@ -70,7 +70,7 @@ public class PeopleFile extends CustomFile {
     }
 
     // EFFECTS: prints out the contents of the people file
-    public void printContents() {
+    public void getContents() {
 
         System.out.println("File loaded successfully! Here are its contents: ");
 
@@ -84,13 +84,15 @@ public class PeopleFile extends CustomFile {
         }
     }
 
-    // EFFECTS: Prints out a sample format of the people file
-    public void getSampleFormat() {
+    // EFFECTS: Retrieves a sample format of the people file
+    public String getSampleFormat() {
 
-        System.out.println("\nThe correct format for a people input file should be:");
-        System.out.println("Name: Group1, Group2, Group3");
-        System.out.println("\nFor example: ");
-        System.out.println("Bob: UBC 2022, Sauder 2021, BUCS");
+        String output = "\nThe correct format for a people input file should be:"
+                + "Name: Group1, Group2, Group3"
+                + "\nFor example: "
+                + "Bob: UBC 2022, Sauder 2021, BUCS";
+
+        return output;
     }
 
     public void printStats() {

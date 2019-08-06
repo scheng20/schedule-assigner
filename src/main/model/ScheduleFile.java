@@ -76,7 +76,7 @@ public class ScheduleFile extends CustomFile {
     }
 
     // EFFECTS: prints out the contents of the schedule
-    public void printContents() {
+    public void getContents() {
 
         System.out.println("File loaded successfully! Here are its contents: ");
 
@@ -97,12 +97,14 @@ public class ScheduleFile extends CustomFile {
     }
 
     // EFFECTS: Prints out a sample format of the schedule file
-    public void getSampleFormat() {
+    public String getSampleFormat() {
 
-        System.out.println("\nThe correct format for a schedule input file should be:");
-        System.out.println("Date: Group1, Group2, Group3");
-        System.out.println("\nFor example: ");
-        System.out.println("July 2: UBC 2022, BUCS, Science 2021");
+        String output = "\nThe correct format for a schedule input file should be:"
+                + "Date: Group1, Group2, Group3"
+                + "\nFor example: "
+                + "July 2: UBC 2022, BUCS, Science 2021";
+
+        return output;
     }
 
     // ------------------------- GETTERS AND SETTERS -------------------------

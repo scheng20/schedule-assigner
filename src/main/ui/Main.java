@@ -72,11 +72,11 @@ public class Main {
         while (true) {
             try {
                 fileType.readFile(filePath);
-                fileType.printContents();
+                fileType.getContents();
                 break;
 
             } catch (Exception e) {
-                fileType.handleException(e);
+                System.out.println(fileType.handleException(e));
                 filePath = input.nextLine();
             }
 
