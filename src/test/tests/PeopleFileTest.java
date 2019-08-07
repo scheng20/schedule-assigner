@@ -26,13 +26,13 @@ public class PeopleFileTest {
 
         PF = new PeopleFile();
 
-        goodfilePath = ".\\storage\\testPeopleInput.txt";
+        goodfilePath = ".\\src\\test\\tests\\testPeopleInput.txt";
 
-        badFormatFilePath = ".\\storage\\poorFormat.txt";
+        badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
 
-        emptyfilePath = ".\\storage\\justEmpty.txt";
+        emptyfilePath = ".\\src\\test\\tests\\justEmpty.txt";
 
-        savePath = ".\\storage\\testSave.txt";
+        savePath = ".\\src\\test\\tests\\testSave.txt";
     }
 
     @Test

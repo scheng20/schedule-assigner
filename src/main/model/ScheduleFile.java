@@ -73,6 +73,7 @@ public class ScheduleFile extends CustomFile {
     // Mostly used for testing purposes
 
     public void addGroupToDay(String date, Group group) {
+
         ArrayList<Group> currentDayGroups = schedule.get(date);
         currentDayGroups.add(group);
     }

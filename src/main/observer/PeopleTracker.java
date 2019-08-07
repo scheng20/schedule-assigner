@@ -11,8 +11,4 @@ public class PeopleTracker implements Observer {
     public void update(Observable o, Object arg) {
         totalPeople++;
     }
-
-    public int getTotalPeople() {
-        return totalPeople;
-    }
 }

@@ -22,16 +22,10 @@ public class ScheduleFileTest {
 
         SF = new ScheduleFile();
 
-        goodfilePath = ".\\storage\\testScheduleInput.txt";
+        goodfilePath = ".\\src\\test\\tests\\testScheduleInput.txt";
 
-        badFormatFilePath = ".\\storage\\poorFormat.txt";
+        badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
 
-        // Read and get the file's contents
-        try {
-            SF.readFile(goodfilePath);
-        } catch (Exception e) {
-
-        }
     }
 
     @Test
@@ -51,34 +45,40 @@ public class ScheduleFileTest {
     public void testProcessDetails() {
 
         try {
-            SF.processDetails();
+            SF.readFile(goodfilePath);
+
+            Map<String, ArrayList<Group>> result = SF.getSchedule();
+
+            Group UBC_2022 = new Group("UBC 2022");
+            Group ARTS_2022 = new Group("Arts 2022");
+            Group SAUDER_2023 = new Group("Sauder 2023");
+            Group BUCS = new Group("BUCS");
+
+            assertEquals(2, result.get("July 2").size());
+            assertEquals(3, result.get("July 3").size());
+
+            assertTrue(result.get("July 2").contains(BUCS));
+            assertTrue(result.get("July 2").contains(SAUDER_2023));
+            assertFalse(result.get("July 2").contains(ARTS_2022));
+
+            assertTrue(result.get("July 3").contains(ARTS_2022));
+            assertTrue(result.get("July 3").contains(SAUDER_2023));
+            assertTrue(result.get("July 3").contains(UBC_2022));
+            assertFalse(result.get("July 3").contains(BUCS));
+
         } catch (Exception e) {
             fail();
         }
-
-        Map<String, ArrayList<Group>> result = SF.getSchedule();
-
-        Group UBC_2022 = new Group("UBC 2022");
-        Group ARTS_2022 = new Group("Arts 2022");
-        Group SAUDER_2023 = new Group("Sauder 2023");
-        Group BUCS = new Group("BUCS");
-
-        assertEquals(2, result.get("July 2").size());
-        assertEquals(3, result.get("July 3").size());
-
-        assertTrue(result.get("July 2").contains(BUCS));
-        assertTrue(result.get("July 2").contains(SAUDER_2023));
-        assertFalse(result.get("July 2").contains(ARTS_2022));
-
-        assertTrue(result.get("July 3").contains(ARTS_2022));
-        assertTrue(result.get("July 3").contains(SAUDER_2023));
-        assertTrue(result.get("July 3").contains(UBC_2022));
-        assertFalse(result.get("July 3").contains(BUCS));
-
     }
 
     @Test
     public void testAddGroupToDay() {
+
+        try {
+            SF.readFile(goodfilePath);
+        } catch (Exception e) {
+            fail();
+        }
 
         Group newGroup = new Group("New Group");
 
@@ -94,11 +94,17 @@ public class ScheduleFileTest {
     @Test
     public void testGetGroupAsStrings() {
 
+        try {
+            SF.readFile(goodfilePath);
+        } catch (Exception e) {
+            fail();
+        }
+
         ArrayList<Group> input = SF.getSchedule().get("July 2");
 
         String result = SF.getGroupsAsString(input);
 
-        assertEquals("BUCS, Sauder 2023",result );
+        assertEquals("BUCS, Sauder 2023", result );
 
     }
 

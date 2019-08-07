@@ -95,6 +95,7 @@ public class PersonTest {
         Person p3 = new Person("Marly");
 
         assertFalse(p1.equals(g));
+
         assertTrue(p1.equals(p1));
 
         assertTrue(p1.equals(p2));

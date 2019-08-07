@@ -30,11 +30,17 @@ public class ExceptionsTest {
 
         nonExistFilePath = "";
 
+        /*
         emptyFilePath = ".\\storage\\justEmpty.txt";
 
         badFormatFilePath = ".\\storage\\poorFormat.txt";
 
-        workingFilePath = ".\\storage\\testScheduleInput.txt";
+        workingFilePath = ".\\storage\\testScheduleInput.txt"; */
+
+        emptyFilePath = ".\\src\\test\\tests\\justEmpty.txt";
+        badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
+        workingFilePath = ".\\src\\test\\tests\\testScheduleInput.txt";
+
     }
 
     @Test
