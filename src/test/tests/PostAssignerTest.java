@@ -11,6 +11,7 @@ import tools.PostAssigner;
 import tools.PostFinder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -113,6 +114,41 @@ public class PostAssignerTest {
         for (Person p: peopleInput.getPeople()) {
             assertFalse(p.hasGroupAssigned());
         }
+
+    }
+
+    @Test
+    public void testGetScheduleForTable()
+    {
+        Map<String, String> expectedResult = new HashMap<>();
+
+        expectedResult.put("July 2", "BUCS (Nobody), Sauder 2023 (Nobody)");
+        expectedResult.put("July 3", "Arts 2022 (Nobody), Sauder 2023 (Nobody), UBC 2022 (Nobody)");
+
+        Map<String, String> result = PA.getScheduleForTable();
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testGetGroupsWithPerson() {
+
+        Group g1 = new Group("g1");
+        Person p1 = new Person("p1");
+        g1.setPerson(p1);
+
+        Group g2 = new Group("g2");
+        Person p2 = new Person("p2");
+        g2.setPerson(p2);
+
+        ArrayList<Group> input = new ArrayList<>();
+        input.add(g1);
+        input.add(g2);
+
+        String result = PA.getGroupsWithPerson(input);
+
+        assertEquals("g1 (p1), g2 (p2)", result);
 
     }
 

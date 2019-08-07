@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,6 +47,7 @@ public class ScheduleFileTest {
 
         try {
             SF.readFile(goodfilePath);
+            SF.processDetails();
 
             Map<String, ArrayList<Group>> result = SF.getSchedule();
 
@@ -111,6 +113,63 @@ public class ScheduleFileTest {
     @Test
     public void testGetSampleFormat() {
 
-        SF.getSampleFormat();
+        String result = "\nThe correct format for a schedule input file should be:"
+                + "Date: Group1, Group2, Group3"
+                + "\nFor example: "
+                + "July 2: UBC 2022, BUCS, Science 2021";
+
+        assertEquals(result, SF.getSampleFormat());
+    }
+
+    @Test
+    public void testGetScheduleMapString() {
+
+        Group g1 = new Group ("g1");
+        ArrayList<Group> groupList = new ArrayList<>();
+        groupList.add(g1);
+
+        Map<String, ArrayList<Group>> input = new HashMap<>();
+
+        input.put("July 1", groupList);
+
+        Map<String, String> result = SF.getScheduleMapString(input);
+
+        Map<String, String> expectedResult = new HashMap<>();
+        expectedResult.put("July 1", "g1");
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testClearSchedule() {
+
+        try {
+            SF.readFile(goodfilePath);
+        } catch (Exception e) {
+            fail();
+        }
+
+        SF.clearSchedule();
+
+        assertTrue(SF.getSchedule().isEmpty());
+    }
+
+    // TODO: how to test this?
+    @Test
+    public void testSaveFile() {
+
+        Map<String, String> input = new HashMap<>();
+        input.put("hello", "world");
+
+        String saveFilePath = ".\\src\\test\\tests\\testSave.txt";
+
+        try {
+            SF.saveFile(saveFilePath, input);
+        } catch (Exception e) {
+
+        }
+
+
     }
 }

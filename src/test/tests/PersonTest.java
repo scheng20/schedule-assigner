@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PersonTest {
 
-
     Person p;
     Group g;
     ArrayList<Group> isInGroups;

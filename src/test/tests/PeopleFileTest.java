@@ -160,7 +160,14 @@ public class PeopleFileTest {
 
     @Test
     public void testGetSampleFormat() {
-        PF.getSampleFormat();
+
+        String expectedOutput = "\nThe correct format for a people input file should be:"
+                + "Name: Group1, Group2, Group3"
+                + "\nFor example: "
+                + "Bob: UBC 2022, Sauder 2021, BUCS";
+
+        assertEquals(expectedOutput, PF.getSampleFormat());
+
     }
 
     @Test
@@ -177,5 +184,40 @@ public class PeopleFileTest {
         } catch (Exception e) {
             fail();
         }
+    }
+
+    @Test
+    public void testClearPeople() {
+        try {
+            PF.readFile(goodfilePath);
+
+            assertEquals(3, PF.getPeople().size());
+
+            PF.clearPeople();
+
+            assertEquals(0, PF.getPeople().size());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testSetPeople() {
+
+        ArrayList<Person> newPeople = new ArrayList<Person>();
+        Person p1 = new Person("p1");
+        Person p2 = new Person("p2");
+        Person p3 = new Person("p3");
+
+        newPeople.add(p1);
+        newPeople.add(p2);
+        newPeople.add(p3);
+
+        PF.setPeople(newPeople);
+
+        assertEquals(newPeople, PF.getPeople());
+        assertEquals(3, PF.getPeople().size());
+
     }
 }
