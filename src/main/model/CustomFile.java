@@ -71,7 +71,5 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
 
     public abstract void processDetails() throws FileNotFoundException, IncorrectFormatException;
 
-    //public abstract void getContents();
-
     public abstract String getSampleFormat();
 }

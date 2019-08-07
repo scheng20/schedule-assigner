@@ -6,11 +6,8 @@ import java.util.Objects;
 public class Person {
 
     private String name;
-
     private ArrayList<Group> isInGroups;
-
     private ArrayList<Group> assignedGroups;
-
     private String isInGroupsString;
 
     // Constructs a person
@@ -35,9 +32,7 @@ public class Person {
     public boolean hasGroupAssigned() {
 
         if (assignedGroups.size() >= 1) {
-
             return true;
-
         } else {
             return false;
         }
@@ -94,11 +89,5 @@ public class Person {
     @Override
     public int hashCode() {
         return Objects.hash(name, isInGroups);
-    }
-
-    // ------------------------- OVERRIDING TO STRING -------------------------
-    @Override
-    public String toString() {
-        return name;
     }
 }

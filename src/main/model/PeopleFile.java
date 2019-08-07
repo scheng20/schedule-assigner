@@ -10,13 +10,8 @@ import java.util.Scanner;
 
 public class PeopleFile extends CustomFile {
 
-    // For storing the scanned people
     private ArrayList<Person> people;
-
-    // For analyzing the lines
     private LineAnalyzer lineReader;
-
-    // For retrieving the statistics
     private PeopleTracker peopleTracker;
 
     // Constructs a new people file
@@ -69,39 +64,7 @@ public class PeopleFile extends CustomFile {
         scanner.close();
     }
 
-    // EFFECTS: prints out the contents of the people file
-    /*
-    public void getContents() {
-
-        System.out.println("File loaded successfully! Here are its contents: ");
-
-        System.out.println("\nPeople: ");
-        System.out.println("-----------");
-
-        for (Person p: people) {
-            System.out.println("Name: " + p.getName());
-            System.out.println("Groups:" + p.getIsInGroupsString());
-            System.out.println("-----------");
-        }
-    }*/
-
-    // EFFECTS: Retrieves a sample format of the people file
-    public String getSampleFormat() {
-
-        String output = "\nThe correct format for a people input file should be:"
-                + "Name: Group1, Group2, Group3"
-                + "\nFor example: "
-                + "Bob: UBC 2022, Sauder 2021, BUCS";
-
-        return output;
-    }
-
-    public void printStats() {
-
-        System.out.println("The total number of people is: " + peopleTracker.getTotalPeople() + " people");
-
-    }
-
+    // EFFECTS: Empties the people ArrayList
     public void clearPeople() {
         people.clear();
     }
@@ -114,5 +77,16 @@ public class PeopleFile extends CustomFile {
 
     public void setPeople(ArrayList<Person> people) {
         this.people = people;
+    }
+
+    // EFFECTS: Retrieves a sample format of the people file
+    public String getSampleFormat() {
+
+        String output = "\nThe correct format for a people input file should be:"
+                + "Name: Group1, Group2, Group3"
+                + "\nFor example: "
+                + "Bob: UBC 2022, Sauder 2021, BUCS";
+
+        return output;
     }
 }
