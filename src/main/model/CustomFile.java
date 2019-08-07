@@ -32,7 +32,7 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
         } else if (file.length() == 0) {
             throw new EmptyFileException();
         } else {
-            System.out.println("Reading the file's contents...");
+
             processDetails();
         }
 
@@ -53,20 +53,15 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
 
         if (e instanceof FileNotFoundException) {
 
-            output = "That file is not found! Please enter a valid location:";
+            output = "That file is not found! Please enter a valid location!";
 
         } else if (e instanceof EmptyFileException) {
 
-            output = "File cannot be empty!"
-                    + "\nPlease add some content to the file."
-                    + "\n Once you have done so, please re-enter the file's location: ";
+            output = "File cannot be empty! Please add some content to the file.";
 
         } else if (e instanceof  IncorrectFormatException) {
 
-            output = "The file's contents are formatted incorrectly! \n"
-                    + getSampleFormat()
-                    + "\nPlease reformat your file and try again!"
-                    + "Once you have done so, please re-enter the file's location: ";
+            output = "The file's contents are formatted incorrectly!";
         }
 
         return output;

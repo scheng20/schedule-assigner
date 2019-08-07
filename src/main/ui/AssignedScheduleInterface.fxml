@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AssignedScheduleController">
+   <center>
+      <TableView fx:id="scheduleOutputTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="dateColumn" prefWidth="156.0" text="Date" />
+          <TableColumn fx:id="scheduledGroupWithPersonColumn" prefWidth="443.0" text="Scheduled Group (Person Responsible)" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <VBox>
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" text="Export Schedule To:">
+                     <padding>
+                        <Insets right="10.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <TextField prefHeight="30.0" prefWidth="300.0" promptText="Save File Location" />
+                  <Button mnemonicParsing="false" text="Export">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0">
+               <children>
+                  <Label text="Message" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </bottom>
+</BorderPane>

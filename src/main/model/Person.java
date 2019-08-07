@@ -11,11 +11,14 @@ public class Person {
 
     private ArrayList<Group> assignedGroups;
 
+    private String isInGroupsString;
+
     // Constructs a person
     public Person(String name) {
         this.name = name;
         this.isInGroups = new ArrayList<Group>();
         this.assignedGroups = new ArrayList<Group>();
+        this.isInGroupsString = "";
     }
 
     // MODIFIES: this
@@ -40,23 +43,23 @@ public class Person {
         }
     }
 
-    // EFFECTS: Returns the the list of groups that the person is a part of as a list of strings.
-    public ArrayList<String> getGroupsAsStrings() {
-
-        ArrayList<String> result = new ArrayList<>();
-
-        for (Group g: isInGroups) {
-            result.add(g.getName());
-        }
-
-        return result;
-    }
-
     // ------------------------------ GETTERS AND SETTERS -------------------------------
 
+    // EFFECTS: Sets the person's groups and adds each group to IsInGroupString
     public void setGroups(ArrayList<Group> isInGroups) {
 
         this.isInGroups = isInGroups;
+
+        for (Group g: isInGroups) {
+            isInGroupsString += g.getName() + ", ";
+        }
+
+        isInGroupsString = isInGroupsString.substring(0, isInGroupsString.length() - 2);
+    }
+
+    public String getIsInGroupsString() {
+
+        return isInGroupsString;
     }
 
     public ArrayList<Group> getGroups() {

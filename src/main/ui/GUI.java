@@ -10,9 +10,10 @@ public class GUI extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("UserInterface.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainUserInterface.fxml"));
         primaryStage.setTitle("Schedule Assigner");
-        primaryStage.setScene(new Scene(root, 1000, 700));
+        primaryStage.setScene(new Scene(root, 1000, 750));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

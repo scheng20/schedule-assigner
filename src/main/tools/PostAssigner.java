@@ -7,6 +7,7 @@ import model.Person;
 import model.ScheduleFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class PostAssigner {
@@ -130,5 +131,31 @@ public class PostAssigner {
 
     public Map<String, ArrayList<Group>> getSchedule() {
         return schedule;
+    }
+
+    public Map<String, String> getScheduleForTable() {
+
+        Map<String, String> result = new HashMap<>();
+
+        for (Map.Entry<String, ArrayList<Group>> entry : schedule.entrySet()) {
+
+            result.put(entry.getKey(), getGroupsWithPerson(entry.getValue()));
+        }
+
+        return result;
+    }
+
+    public String getGroupsWithPerson(ArrayList<Group> input) {
+
+        String result = "";
+
+        for (Group g: input) {
+            result += g.getName() + " (" + g.getPersonResponsible().getName() + ") , ";
+        }
+
+        result = result.substring(0, result.length() - 2);
+
+        return result;
+
     }
 }

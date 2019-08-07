@@ -79,7 +79,7 @@ public class PeopleFile extends CustomFile {
 
         for (Person p: people) {
             System.out.println("Name: " + p.getName());
-            System.out.println("Groups:" + p.getGroupsAsStrings());
+            System.out.println("Groups:" + p.getIsInGroupsString());
             System.out.println("-----------");
         }
     }
@@ -101,9 +101,17 @@ public class PeopleFile extends CustomFile {
 
     }
 
+    public void clearPeople() {
+        people.clear();
+    }
+
     // ------------------------- GETTERS AND SETTERS -------------------------
 
     public ArrayList<Person> getPeople() {
         return people;
+    }
+
+    public void setPeople(ArrayList<Person> people) {
+        this.people = people;
     }
 }

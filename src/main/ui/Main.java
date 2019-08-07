@@ -6,7 +6,6 @@ import model.Group;
 import model.PeopleFile;
 import model.ScheduleFile;
 import tools.PostAssigner;
-import tools.WebReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,9 +22,6 @@ public class Main {
     // Scanner for collecting user input
     static Scanner input = new Scanner(System.in);
 
-    // FOR WEEK 10 DELIVERABLE
-    static WebReader wb = new WebReader();
-
     // Current UI of the program
     public static void main(String[] args) throws IOException, FileException {
 
@@ -34,7 +30,6 @@ public class Main {
 
         //Intro
         System.out.println("================ INTRO =======================");
-        wb.readWeb();
         System.out.println("Welcome to schedule assigner!");
 
         // Ask for user input of people data

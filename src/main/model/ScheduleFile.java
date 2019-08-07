@@ -56,14 +56,16 @@ public class ScheduleFile extends CustomFile {
         scanner.close();
     }
 
-    // EFFECTS: Returns the schedule's groups as a list of strings
-    public ArrayList<String> getGroupsAsString(ArrayList<Group> input) {
+    // EFFECTS: Returns the schedule's groups in the form of a long string
+    public String getGroupsAsString(ArrayList<Group> input) {
 
-        ArrayList<String> output = new ArrayList<>();
+        String output = "";
 
         for (Group g: input) {
-            output.add(g.getName());
+            output += g.getName() + ", ";
         }
+
+        output = output.substring(0, output.length() - 2);
 
         return output;
     }
@@ -87,7 +89,7 @@ public class ScheduleFile extends CustomFile {
 
             System.out.println("Date:" + entry.getKey());
 
-            ArrayList<String> groupsAsString = getGroupsAsString(entry.getValue());
+            String groupsAsString = getGroupsAsString(entry.getValue());
 
             System.out.println("Groups: " + groupsAsString);
 
@@ -107,10 +109,28 @@ public class ScheduleFile extends CustomFile {
         return output;
     }
 
+    public void clearSchedule() {
+        schedule.clear();
+    }
+
     // ------------------------- GETTERS AND SETTERS -------------------------
 
     public Map<String, ArrayList<Group>> getSchedule() {
         return schedule;
+    }
+
+    public Map<String, String> getScheduleMapString(Map<String, ArrayList<Group>> input) {
+
+        Map<String, String> output = new HashMap<>();
+
+        for (Map.Entry<String, ArrayList<Group>> entry : input.entrySet()) {
+
+            String groupsAsString = getGroupsAsString(entry.getValue());
+
+            output.put(entry.getKey(), groupsAsString);
+        }
+
+        return output;
     }
 
 }
