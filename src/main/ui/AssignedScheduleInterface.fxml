@@ -38,7 +38,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="helpMessage" text="Message" />
+                  <Label fx:id="helpMessage" />
                </children>
             </HBox>
          </children>

@@ -29,8 +29,14 @@ public class PostFinderTest {
 
         // This setup might needs to be changed in the future to avoid using local file paths
         try {
+            /*
             peopleInput.readFile(".\\src\\test\\tests\\testPeopleInput.txt");
             scheduleInput.readFile(".\\src\\test\\tests\\testScheduleInput.txt");
+             */
+
+            peopleInput.readFile("testPeopleInput.txt");
+            scheduleInput.readFile("testScheduleInput.txt");
+
         } catch (Exception e) {
 
         }

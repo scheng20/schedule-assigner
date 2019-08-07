@@ -23,9 +23,13 @@ public class ScheduleFileTest {
 
         SF = new ScheduleFile();
 
+        /*
         goodfilePath = ".\\src\\test\\tests\\testScheduleInput.txt";
-
         badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
+         */
+
+        goodfilePath = "testScheduleInput.txt";
+        badFormatFilePath = "poorFormat.txt";
 
     }
 

@@ -26,13 +26,27 @@ public class PeopleFileTest {
 
         PF = new PeopleFile();
 
+        // .txt files located in tests folder
+        /*
         goodfilePath = ".\\src\\test\\tests\\testPeopleInput.txt";
-
         badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
-
         emptyfilePath = ".\\src\\test\\tests\\justEmpty.txt";
-
         savePath = ".\\src\\test\\tests\\testSave.txt";
+         */
+
+        // .txt. files located in storage folder
+        /*
+        goodfilePath = ".\\storage\\testPeopleInput.txt";
+        badFormatFilePath = ".\\storage\\poorFormat.txt";
+        emptyfilePath = ".\\storage\\justEmpty.txt";
+        savePath = ".\\storage\\testSave.txt";
+         */
+
+        goodfilePath = "testPeopleInput.txt";
+        badFormatFilePath = "poorFormat.txt";
+        emptyfilePath = "justEmpty.txt";
+        savePath = "testSave.txt";
+
     }
 
     @Test

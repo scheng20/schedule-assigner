@@ -30,16 +30,22 @@ public class ExceptionsTest {
 
         nonExistFilePath = "";
 
+        // .txt files located in tests folder
         /*
-        emptyFilePath = ".\\storage\\justEmpty.txt";
-
-        badFormatFilePath = ".\\storage\\poorFormat.txt";
-
-        workingFilePath = ".\\storage\\testScheduleInput.txt"; */
-
         emptyFilePath = ".\\src\\test\\tests\\justEmpty.txt";
         badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
-        workingFilePath = ".\\src\\test\\tests\\testScheduleInput.txt";
+        workingFilePath = ".\\src\\test\\tests\\testScheduleInput.txt";*/
+
+        // .txt. files located in storage folder
+        /*
+        emptyFilePath = ".\\storage\\justEmpty.txt";
+        badFormatFilePath = ".\\storage\\poorFormat.txt";
+        workingFilePath = ".\\storage\\testScheduleInput.txt";
+         */
+
+        emptyFilePath = "justEmpty.txt";
+        badFormatFilePath = "poorFormat.txt";
+        workingFilePath = "testScheduleInput.txt";
 
     }
 
