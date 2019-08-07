@@ -4,8 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 import model.PeopleFile;
 import model.ScheduleFile;
@@ -23,6 +23,12 @@ public class AssignedScheduleController {
     Map<String, String> scheduleStringMap;
 
     // For the UI
+    public Label helpMessage;
+
+    public Button export;
+
+    public TextField exportLocation;
+
     public TableView<Map.Entry<String,String>> scheduleOutputTable;
     public TableColumn<Map.Entry<String, String>, String> dateColumn;
     public TableColumn<Map.Entry<String, String>, String> scheduledGroupWithPersonColumn;
@@ -78,8 +84,8 @@ public class AssignedScheduleController {
             }
         });
 
-        scheduledGroupWithPersonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Map.Entry<String, String>,
-                String>, ObservableValue<String>>() {
+        scheduledGroupWithPersonColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures
+                <Map.Entry<String, String>, String>, ObservableValue<String>>() {
 
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Map.Entry<String, String>, String> p) {
@@ -91,6 +97,28 @@ public class AssignedScheduleController {
 
         ObservableList<Map.Entry<String, String>> items = FXCollections.observableArrayList(map.entrySet());
         scheduleOutputTable.setItems(items);
+
+    }
+
+    public void saveScheduleToLocation() {
+
+        if (!exportLocation.getText().isEmpty()) {
+
+            try {
+                scheduleFile.saveFile(exportLocation.getText(), scheduleStringMap);
+
+                helpMessage.setTextFill(Color.web("#529900"));
+                helpMessage.setText("File Saved Successfully!");
+
+            } catch (Exception e) {
+                helpMessage.setTextFill(Color.web("#de2707"));
+                helpMessage.setText("Something went wrong!");
+            }
+
+        } else {
+            helpMessage.setTextFill(Color.web("#de2707"));
+            helpMessage.setText("Save path cannot be empty!");
+        }
 
     }
 

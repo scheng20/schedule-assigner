@@ -9,7 +9,6 @@ public class PeopleTracker implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Adding Person: " + arg);
         totalPeople++;
     }
 

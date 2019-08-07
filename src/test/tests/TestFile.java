@@ -2,7 +2,6 @@ package tests;
 
 import model.ScheduleFile;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class TestFile {
     ScheduleFile SF;
@@ -24,12 +23,5 @@ public class TestFile {
         } catch (Exception e) {
 
         }
-    }
-
-    @Test
-    void testPrintContents() {
-
-        SF.getContents();
-
     }
 }

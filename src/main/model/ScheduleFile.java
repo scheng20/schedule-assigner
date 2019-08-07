@@ -4,6 +4,8 @@ import exceptions.IncorrectFormatException;
 import tools.LineAnalyzer;
 
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -78,6 +80,7 @@ public class ScheduleFile extends CustomFile {
     }
 
     // EFFECTS: prints out the contents of the schedule
+    /*
     public void getContents() {
 
         System.out.println("File loaded successfully! Here are its contents: ");
@@ -96,7 +99,7 @@ public class ScheduleFile extends CustomFile {
             System.out.println("-----------");
         }
 
-    }
+    }*/
 
     // EFFECTS: Prints out a sample format of the schedule file
     public String getSampleFormat() {
@@ -109,16 +112,43 @@ public class ScheduleFile extends CustomFile {
         return output;
     }
 
+
+    // EFFECTS: Clears the schedule
     public void clearSchedule() {
         schedule.clear();
     }
 
+    // EFFECTS: Saves the given string map schedule into a .txt file
+    public void saveFile(String path, Map<String, String> input) throws IOException {
+
+        writer = new FileWriter(path);
+
+        writer.write("ASSIGNED SCHEDULE\n");
+        writer.write("=========================\n");
+
+        for (Map.Entry<String, String> entry : input.entrySet()) {
+
+            String output = "\nDate: " + entry.getKey();
+
+            writer.write(output);
+
+            output = "\nGroups (Person Responsible): " + entry.getValue() + "\n";
+
+            writer.write(output);
+        }
+
+        //writer.write(content);
+        writer.close();
+    }
+
     // ------------------------- GETTERS AND SETTERS -------------------------
 
+    // EFFECTS: returns the read schedule
     public Map<String, ArrayList<Group>> getSchedule() {
         return schedule;
     }
 
+    // EFFECTS: Converts the given map into a string map
     public Map<String, String> getScheduleMapString(Map<String, ArrayList<Group>> input) {
 
         Map<String, String> output = new HashMap<>();

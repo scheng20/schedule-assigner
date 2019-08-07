@@ -28,8 +28,8 @@
                         <Insets right="10.0" top="5.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="30.0" prefWidth="300.0" promptText="Save File Location" />
-                  <Button mnemonicParsing="false" text="Export">
+                  <TextField fx:id="exportLocation" prefHeight="30.0" prefWidth="300.0" promptText="Save File Location" />
+                  <Button fx:id="export" mnemonicParsing="false" onAction="#saveScheduleToLocation" text="Export">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
@@ -38,7 +38,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="600.0">
                <children>
-                  <Label text="Message" />
+                  <Label fx:id="helpMessage" text="Message" />
                </children>
             </HBox>
          </children>

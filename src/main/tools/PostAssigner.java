@@ -150,7 +150,7 @@ public class PostAssigner {
         String result = "";
 
         for (Group g: input) {
-            result += g.getName() + " (" + g.getPersonResponsible().getName() + ") , ";
+            result += g.getName() + " (" + g.getPersonResponsible().getName() + "), ";
         }
 
         result = result.substring(0, result.length() - 2);

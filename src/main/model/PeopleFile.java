@@ -70,6 +70,7 @@ public class PeopleFile extends CustomFile {
     }
 
     // EFFECTS: prints out the contents of the people file
+    /*
     public void getContents() {
 
         System.out.println("File loaded successfully! Here are its contents: ");
@@ -82,7 +83,7 @@ public class PeopleFile extends CustomFile {
             System.out.println("Groups:" + p.getIsInGroupsString());
             System.out.println("-----------");
         }
-    }
+    }*/
 
     // EFFECTS: Retrieves a sample format of the people file
     public String getSampleFormat() {
