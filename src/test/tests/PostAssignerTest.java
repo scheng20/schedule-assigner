@@ -43,8 +43,8 @@ public class PostAssignerTest {
             scheduleInput.readFile(".\\src\\test\\tests\\testScheduleInput.txt");
              */
 
-            peopleInput.readFile("testPeopleInput.txt");
-            scheduleInput.readFile("testScheduleInput.txt");
+            peopleInput.readFile("./testPeopleInput.txt");
+            scheduleInput.readFile("./testScheduleInput.txt");
 
         } catch (Exception e) {
 

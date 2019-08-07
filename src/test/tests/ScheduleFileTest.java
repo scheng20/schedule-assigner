@@ -28,8 +28,8 @@ public class ScheduleFileTest {
         badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
          */
 
-        goodfilePath = "testScheduleInput.txt";
-        badFormatFilePath = "poorFormat.txt";
+        goodfilePath = "./testScheduleInput.txt";
+        badFormatFilePath = "./poorFormat.txt";
 
     }
 

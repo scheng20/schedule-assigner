@@ -43,9 +43,9 @@ public class ExceptionsTest {
         workingFilePath = ".\\storage\\testScheduleInput.txt";
          */
 
-        emptyFilePath = "justEmpty.txt";
-        badFormatFilePath = "poorFormat.txt";
-        workingFilePath = "testScheduleInput.txt";
+        emptyFilePath = "./justEmpty.txt";
+        badFormatFilePath = "./poorFormat.txt";
+        workingFilePath = "./testScheduleInput.txt";
 
     }
 

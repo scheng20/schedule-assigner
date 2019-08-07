@@ -42,10 +42,10 @@ public class PeopleFileTest {
         savePath = ".\\storage\\testSave.txt";
          */
 
-        goodfilePath = "testPeopleInput.txt";
-        badFormatFilePath = "poorFormat.txt";
-        emptyfilePath = "justEmpty.txt";
-        savePath = "testSave.txt";
+        goodfilePath = "./testPeopleInput.txt";
+        badFormatFilePath = "./poorFormat.txt";
+        emptyfilePath = "./justEmpty.txt";
+        savePath = "./testSave.txt";
 
     }
 
