@@ -8,24 +8,25 @@
     /*-fx-background-color: transparent;*/
 }
 
-
-
+/*
 //Style of each column header in the tableView
 .table-view .column-header {
      -fx-background-color: transparent;
 }
 
+
 //Style of each column header's background in the tableView
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
+    -fx-background-color: linear-gradient(to bottom, #adc7e0, #94b4d5, #7ba2c9, #6190be, #467eb3);
 }
 
  //Style of each column header's label  in the tableView
+
 .table-view .column-header-background .label{
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
     -fx-font-weight:bold;
     -fx-text-fill: white;
-}
+}*/
 
 //Style of each column in the tableView
 .table-view .table-column{
@@ -34,8 +35,8 @@
 
  //Style of each table cell
 .table-view .table-cell{
-    -fx-font-weight:bold;
-    -fx-font-size:15px;           //the font size you asked in the comments below
+    -fx-font-weight: normal;
+    -fx-font-size: 18px;           //the font size you asked in the comments below
     /* -fx-text-fill:orange; */
 
 }
@@ -65,10 +66,10 @@
 
 //Style of each entire row in the table view when is hovered
 .table-row-cell:hover {
-    -fx-background-color:orange;
+    -fx-background-color:LightGrey;
 }
 
 //Style of each entire row in the table view when is getting focused
 .table-row-cell:focused {
-    -fx-background-color:purple;
+    -fx-text-fill: black;
 }
