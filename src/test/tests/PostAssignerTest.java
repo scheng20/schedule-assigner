@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import tools.PostAssigner;
 import tools.PostFinder;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,8 +34,8 @@ public class PostAssignerTest {
     private Group UBC_2022;
     private Person p1;
 
-    File peopleInputFile;
-    File scheduleInputFile;
+    //File peopleInputFile;
+    //File scheduleInputFile;
 
     FileWriter peopleFileWriter;
     FileWriter scheduleFileWriter;
@@ -246,8 +245,7 @@ public class PostAssignerTest {
             searchAndVerify(schedule,rareGroups,"rare");
 
         } catch (NoPersonInGroupException e) {
-            // TODO: fix this
-            //System.out.println("WARNING! NO PERSON WAS FOUND!");
+
             fail();
         }
 
@@ -260,7 +258,6 @@ public class PostAssignerTest {
 
         for (Person p: peopleInput.getPeople()) {
             // TODO: fix this
-
             //assertTrue(p.hasGroupAssigned());
         }
     }

@@ -139,8 +139,9 @@ public class ScheduleFile extends CustomFile {
         return output;
     }
 
+    /*
     public void setSchedule(Map<String, ArrayList<Group>>  givenSchedule) {
         schedule = givenSchedule;
-    }
+    }*/
 
 }

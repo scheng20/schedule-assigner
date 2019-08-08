@@ -162,12 +162,13 @@ public class PostAssigner {
 
     }
 
+    /*
     public void setPeople(ArrayList<Person> people) {
         this.people = people;
     }
 
     public void setSchedule(Map<String, ArrayList<Group>> schedule) {
         this.schedule = schedule;
-    }
+    }*/
 }
 

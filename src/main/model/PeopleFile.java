@@ -86,7 +86,7 @@ public class PeopleFile extends CustomFile {
         return output;
     }
 
-    public void setPeople(ArrayList<Person> people) {
+    /*public void setPeople(ArrayList<Person> people) {
         this.people = people;
-    }
+    }*/
 }
