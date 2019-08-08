@@ -4,6 +4,7 @@ import exceptions.EmptyFileException;
 import exceptions.FileException;
 import exceptions.IncorrectFormatException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 public abstract class CustomFile extends Observable implements Readable, Saveable {
 
     // For opening and reading the file
-    protected java.io.File file; // This is the variable that the file is stored in
+    protected File file; // This is the variable that the file is stored in
 
     // For writing and saving the file
     protected FileWriter writer;
@@ -65,6 +66,12 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
         }
 
         return output;
+    }
+
+    // EFFECTS: sets the file of the class to the given file
+    // Mostly used for testing purposes again
+    public void setFile(File file) {
+        this.file = file;
     }
 
     // ------------------------------ ABSTRACT METHODS -------------------------------

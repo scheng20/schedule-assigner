@@ -16,23 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PeopleFileTest {
 
     PeopleFile PF;
+
     String goodfilePath;
     String badFormatFilePath;
     String emptyfilePath;
+
     String savePath;
 
     @BeforeEach
     public void setUp() {
 
         PF = new PeopleFile();
-
-        // .txt files located in tests folder
-        /*
-        goodfilePath = ".\\src\\test\\tests\\testPeopleInput.txt";
-        badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
-        emptyfilePath = ".\\src\\test\\tests\\justEmpty.txt";
-        savePath = ".\\src\\test\\tests\\testSave.txt";
-         */
 
         // .txt. files located in storage folder
         /*
@@ -41,6 +35,7 @@ public class PeopleFileTest {
         emptyfilePath = ".\\storage\\justEmpty.txt";
         savePath = ".\\storage\\testSave.txt";
          */
+
 
         goodfilePath = "./testPeopleInput.txt";
         badFormatFilePath = "./poorFormat.txt";

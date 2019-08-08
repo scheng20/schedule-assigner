@@ -129,10 +129,12 @@ public class PostAssigner {
         this.postFinder = pf;
     }
 
+    // EFFECTS: gets the schedule
     public Map<String, ArrayList<Group>> getSchedule() {
         return schedule;
     }
 
+    // EFFECTS: returns a Map in the form of strings for the table input
     public Map<String, String> getScheduleForTable() {
 
         Map<String, String> result = new HashMap<>();
@@ -145,6 +147,7 @@ public class PostAssigner {
         return result;
     }
 
+    // EFFECTS: returns a long String with each person and their assigned group
     public String getGroupsWithPerson(ArrayList<Group> input) {
 
         String result = "";
@@ -158,4 +161,13 @@ public class PostAssigner {
         return result;
 
     }
+
+    public void setPeople(ArrayList<Person> people) {
+        this.people = people;
+    }
+
+    public void setSchedule(Map<String, ArrayList<Group>> schedule) {
+        this.schedule = schedule;
+    }
 }
+

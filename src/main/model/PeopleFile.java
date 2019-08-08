@@ -75,10 +75,6 @@ public class PeopleFile extends CustomFile {
         return people;
     }
 
-    public void setPeople(ArrayList<Person> people) {
-        this.people = people;
-    }
-
     // EFFECTS: Retrieves a sample format of the people file
     public String getSampleFormat() {
 
@@ -88,5 +84,9 @@ public class PeopleFile extends CustomFile {
                 + "Bob: UBC 2022, Sauder 2021, BUCS";
 
         return output;
+    }
+
+    public void setPeople(ArrayList<Person> people) {
+        this.people = people;
     }
 }
