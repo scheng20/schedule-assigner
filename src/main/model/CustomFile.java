@@ -63,6 +63,10 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
         } else if (e instanceof  IncorrectFormatException) {
 
             output = "The file's contents are formatted incorrectly!";
+
+        } else {
+
+            output = "Some Exception Occurred!";
         }
 
         return output;

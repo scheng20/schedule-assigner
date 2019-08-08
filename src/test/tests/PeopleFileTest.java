@@ -142,10 +142,12 @@ public class PeopleFileTest {
         Exception notFound = new FileNotFoundException();
         Exception empty = new EmptyFileException();
         Exception format = new IncorrectFormatException();
+        Exception e = new Exception();
 
         assertEquals("That file is not found! Please enter a valid location!",PF.handleException(notFound));
         assertEquals("File cannot be empty! Please add some content to the file.",PF.handleException(empty));
         assertEquals("The file's contents are formatted incorrectly!",PF.handleException(format));
+        assertEquals("Some Exception Occurred!",PF.handleException(e));
 
     }
 

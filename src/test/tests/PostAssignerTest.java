@@ -111,7 +111,6 @@ public class PostAssignerTest {
             searchAndVerify(schedule,rareGroups,"rare");
 
         } catch (NoPersonInGroupException e) {
-
             fail();
         }
 
@@ -123,6 +122,7 @@ public class PostAssignerTest {
         PA.assignPosts();
 
         for (Person p: peopleInput.getPeople()) {
+
             // TODO: fix this
             //assertTrue(p.hasGroupAssigned());
         }
