@@ -1,7 +1,5 @@
 package tests;
 
-import exceptions.FileException;
-import exceptions.IncorrectFormatException;
 import exceptions.NoPersonInGroupException;
 import model.Group;
 import model.PeopleFile;
@@ -13,7 +11,6 @@ import tools.PostAssigner;
 import tools.PostFinder;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,11 +31,8 @@ public class PostAssignerTest {
     private Group UBC_2022;
     private Person p1;
 
-    //File peopleInputFile;
-    //File scheduleInputFile;
-
-    FileWriter peopleFileWriter;
-    FileWriter scheduleFileWriter;
+    private FileWriter peopleFileWriter;
+    private FileWriter scheduleFileWriter;
 
     @BeforeEach
     public void setUp() {
@@ -46,8 +40,6 @@ public class PostAssignerTest {
         scheduleInput = new ScheduleFile();
 
         try {
-            //peopleInputFile = new File("generatedPeopleInputFile.txt");
-            //scheduleInputFile = new File ("generatedScheduleInputFile.txt");
 
             // TIME TO MANUALLY INJECT FILE DATA!
             // Injecting into people input file
@@ -65,24 +57,15 @@ public class PostAssignerTest {
 
             scheduleFileWriter.close();
 
-            // Set the peopleInput to peopleInputFile and scheduleInput to ScheduleInputFile
-
+            // Reading the generated files
             peopleInput.readFile("generatedPeopleInputFile.txt");
             scheduleInput.readFile("generatedScheduleInputFile.txt");
-
-            /*
-            peopleInput.setFile(peopleInputFile);
-            scheduleInput.setFile(scheduleInputFile);*/
 
             peopleInput.processDetails();
             scheduleInput.processDetails();
 
-        } catch (IOException e) {
-            System.out.println("Something went wrong");
-        } catch (IncorrectFormatException e) {
-            System.out.println("Incorrect format exception was caught");
-        } catch (FileException e) {
-            System.out.println("A file exception occured!");
+        } catch (Exception e) {
+            System.out.println("I want to cry");
         }
 
         // Instantiate the PostAssigner & PostFinder
@@ -98,123 +81,6 @@ public class PostAssignerTest {
         UBC_2022 = new Group ("UBC 2022");
 
         p1 = new Person("Bob");
-
-        // Old read file method
-        /*
-        try {
-
-
-            peopleInput.readFile(".\\src\\test\\tests\\testPeopleInput.txt");
-            scheduleInput.readFile(".\\src\\test\\tests\\testScheduleInput.txt");
-
-
-            peopleInput.readFile("./testPeopleInput.txt");
-            scheduleInput.readFile("./testScheduleInput.txt");
-
-        } catch (Exception e) {
-
-        }*/
-
-        // Create the data needed to be injected into the assigner
-
-        // PEOPLE DATA
-
-        /*
-        Arts_2022 = new Group("Arts 2022");
-        BUCS = new Group ("BUCS");
-        Sauder_2023 = new Group ("Sauder 2023");
-        UBC_2022 = new Group ("UBC 2022");
-
-
-        Person Bob = new Person("Bob");
-        ArrayList<Group> BobGroups = new ArrayList<Group>();
-        BobGroups.add(new Group ("UBC 2022"));
-        BobGroups.add(new Group("Arts 2022"));
-        BobGroups.add(new Group ("Sauder 2023"));
-        Bob.setGroups(BobGroups);
-
-        Person Rob = new Person("Rob");
-        ArrayList<Group> RobGroups = new ArrayList<Group>();
-        RobGroups.add(new Group ("UBC 2022"));
-        RobGroups.add(new Group ("Sauder 2023"));
-        RobGroups.add(new Group("BUCS"));
-        Rob.setGroups(BobGroups);
-
-        Person Fred = new Person("Fred");
-        ArrayList<Group> FredGroups = new ArrayList<Group>();
-        FredGroups.add(new Group("UBC 2022"));
-        FredGroups.add(new Group ("Sauder 2023"));
-        Fred.setGroups(FredGroups);
-
-        // SCHEDULE DATA
-        ArrayList<Group> July2Groups = new ArrayList<>();
-        July2Groups.add(new Group ("BUCS"));
-        July2Groups.add(new Group ("Sauder 2023"));
-
-        ArrayList<Group>July3Groups = new ArrayList<>();
-        July3Groups.add(new Group ("Arts 2022"));
-        July3Groups.add(new Group ("Sauder 2023"));
-        July3Groups.add(new Group ("UBC 2022"));
-
-        // MANUALLY INJECT DATA INTO SCHEDULE FILE AND PEOPLE FILE
-        ArrayList<Person> injectedPeople = new ArrayList<>();
-        injectedPeople.add(Bob);
-        injectedPeople.add(Rob);
-        injectedPeople.add(Fred);
-
-        peopleInput.setPeople(injectedPeople);
-
-        Map<String, ArrayList<Group>> injectedSchedule = new HashMap();
-        injectedSchedule.put("July 2", July2Groups);
-        injectedSchedule.put("July 3", July3Groups);
-
-        scheduleInput.setSchedule(injectedSchedule);
-
-        // Instantiate the PostAssigner & PostFinder
-        PA = new PostAssigner(peopleInput, scheduleInput);
-
-        PF = new PostFinder(injectedSchedule, injectedPeople);
-        //PF = new PostFinder(scheduleInput.getSchedule(), peopleInput.getPeople());
-
-        // INJECT DATA INTO POST ASSIGNER
-        PA.setPeople(injectedPeople);
-        PA.setSchedule(injectedSchedule);
-
-        // Establish the correct relationship for easy testing
-        PA.setPostFinder(PF);
-
-        p1 = new Person("Bob");
-        */
-
-        // TRY AGAIN LATER
-        /*
-        try {
-
-            //peopleInput.readFile(".\\src\\test\\tests\\testPeopleInput.txt");
-            //scheduleInput.readFile(".\\src\\test\\tests\\testScheduleInput.txt");
-
-
-            peopleInput.readFile("./testPeopleInput.txt");
-            scheduleInput.readFile("./testScheduleInput.txt");
-
-        } catch (Exception e) {
-
-        }
-
-        // Instantiate the PostAssigner & PostFinder
-        PA = new PostAssigner(peopleInput, scheduleInput);
-        PF = new PostFinder(scheduleInput.getSchedule(), peopleInput.getPeople());
-
-        // Establish the correct relationship for easy testing
-        PA.setPostFinder(PF);
-
-        Arts_2022 = new Group("Arts 2022");
-        BUCS = new Group ("BUCS");
-        Sauder_2023 = new Group ("Sauder 2023");
-        UBC_2022 = new Group ("UBC 2022");
-
-        p1 = new Person("Bob");
-        */
     }
 
     @Test
@@ -342,10 +208,8 @@ public class PostAssignerTest {
                     if (type.equalsIgnoreCase("normal")) {
                         assertEquals(target.getPersonResponsible(), p1);
                     }
-
                 }
             }
         }
     }
-
 }

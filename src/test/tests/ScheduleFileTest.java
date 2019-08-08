@@ -6,6 +6,7 @@ import model.ScheduleFile;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,22 +15,41 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ScheduleFileTest {
 
-    ScheduleFile SF;
-    String goodfilePath;
-    String badFormatFilePath;
+    private ScheduleFile SF;
+    private String goodfilePath;
+    private String badFormatFilePath;
+
+    // FOR MANUALLY CREATING THE FILES
+    private FileWriter scheduleFileWriter;
+    private FileWriter badFormatWriter;
 
     @BeforeEach
     public void setUp() {
 
         SF = new ScheduleFile();
 
-        /*
-        goodfilePath = ".\\src\\test\\tests\\testScheduleInput.txt";
-        badFormatFilePath = ".\\src\\test\\tests\\poorFormat.txt";
-         */
+        try {
 
-        goodfilePath = "./testScheduleInput.txt";
-        badFormatFilePath = "./poorFormat.txt";
+            // TIME TO MANUALLY INJECT FILE DATA!
+            // Injecting into schedule input file
+            scheduleFileWriter = new FileWriter("generatedScheduleInputFile.txt");
+            scheduleFileWriter.write("July 2: BUCS, Sauder 2023\n");
+            scheduleFileWriter.write("July 3: Arts 2022, Sauder 2023, UBC 2022");
+
+            scheduleFileWriter.close();
+
+            // Injecting into bad format file
+            badFormatWriter = new FileWriter("generatedBadFormatFile.txt");
+            badFormatWriter.write("asdfjaksdf");
+            badFormatWriter.close();
+
+
+        } catch (Exception e) {
+            System.out.println("Something went terribly wrong and I want to cry :( ");
+        }
+
+        goodfilePath = "generatedScheduleInputFile.txt";
+        badFormatFilePath = "generatedBadFormatFile.txt";
 
     }
 
@@ -159,14 +179,13 @@ public class ScheduleFileTest {
         assertTrue(SF.getSchedule().isEmpty());
     }
 
-    // TODO: how to test this?
     @Test
     public void testSaveFile() {
 
         Map<String, String> input = new HashMap<>();
         input.put("hello", "world");
 
-        String saveFilePath = ".\\src\\test\\tests\\testSave.txt";
+        String saveFilePath = "generatedSave.txt";
 
         try {
             SF.saveFile(saveFilePath, input);

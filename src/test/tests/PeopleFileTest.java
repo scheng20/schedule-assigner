@@ -16,38 +16,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PeopleFileTest {
 
-    PeopleFile PF;
+    private PeopleFile PF;
 
-    String goodfilePath;
-    String badFormatFilePath;
-    String emptyfilePath;
+    private String goodfilePath;
+    private String badFormatFilePath;
+    private String emptyfilePath;
 
-    String savePath;
+    private String savePath;
 
     // FOR MANUALLY CREATING THE FILES
-    FileWriter peopleFileWriter;
-    FileWriter emptyFileWriter;
-    FileWriter badFormatWriter;
+    private FileWriter peopleFileWriter;
+    private FileWriter emptyFileWriter;
+    private FileWriter badFormatWriter;
 
     @BeforeEach
     public void setUp() {
 
         PF = new PeopleFile();
-
-        // .txt. files located in storage folder
-        /*
-        goodfilePath = ".\\storage\\testPeopleInput.txt";
-        badFormatFilePath = ".\\storage\\poorFormat.txt";
-        emptyfilePath = ".\\storage\\justEmpty.txt";
-        savePath = ".\\storage\\testSave.txt";
-         */
-
-        /*
-        goodfilePath = "./testPeopleInput.txt";
-        badFormatFilePath = "./poorFormat.txt";
-        emptyfilePath = "./justEmpty.txt";
-        savePath = "./testSave.txt"; */
-
 
         try {
 
@@ -247,24 +232,4 @@ public class PeopleFileTest {
             fail();
         }
     }
-
-    /*
-    @Test
-    public void testSetPeople() {
-
-        ArrayList<Person> newPeople = new ArrayList<Person>();
-        Person p1 = new Person("p1");
-        Person p2 = new Person("p2");
-        Person p3 = new Person("p3");
-
-        newPeople.add(p1);
-        newPeople.add(p2);
-        newPeople.add(p3);
-
-        PF.setPeople(newPeople);
-
-        assertEquals(newPeople, PF.getPeople());
-        assertEquals(3, PF.getPeople().size());
-
-    }*/
 }

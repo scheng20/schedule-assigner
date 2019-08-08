@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tools.PostFinder;
 
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,6 +23,9 @@ public class PostFinderTest {
     private Group UBC_2022;
     private PostFinder PF;
 
+    private FileWriter peopleFileWriter;
+    private FileWriter scheduleFileWriter;
+
     @BeforeEach
     public void setUp() {
         peopleInput = new PeopleFile();
@@ -29,16 +33,29 @@ public class PostFinderTest {
 
         // This setup might needs to be changed in the future to avoid using local file paths
         try {
-            /*
-            peopleInput.readFile(".\\src\\test\\tests\\testPeopleInput.txt");
-            scheduleInput.readFile(".\\src\\test\\tests\\testScheduleInput.txt");
-             */
 
-            peopleInput.readFile("./testPeopleInput.txt");
-            scheduleInput.readFile("./testScheduleInput.txt");
+            // TIME TO MANUALLY INJECT FILE DATA!
+            // Injecting into people input file
+            peopleFileWriter = new FileWriter("generatedPeopleInputFile.txt");
+            peopleFileWriter.write("Bob: UBC 2022, Arts 2022, Sauder 2023\n");
+            peopleFileWriter.write("Rob: UBC 2022, Sauder 2023, BUCS\n");
+            peopleFileWriter.write("Fred: UBC 2022, Sauder 2023");
+
+            peopleFileWriter.close();
+
+            // Injecting into schedule input file
+            scheduleFileWriter = new FileWriter("generatedScheduleInputFile.txt");
+            scheduleFileWriter.write("July 2: BUCS, Sauder 2023\n");
+            scheduleFileWriter.write("July 3: Arts 2022, Sauder 2023, UBC 2022");
+
+            scheduleFileWriter.close();
+
+            // Reading the generated files
+            peopleInput.readFile("generatedPeopleInputFile.txt");
+            scheduleInput.readFile("generatedScheduleInputFile.txt");
 
         } catch (Exception e) {
-
+            System.out.println("I want to cry");
         }
 
         // Instantiate the PostFinder

@@ -68,12 +68,6 @@ public abstract class CustomFile extends Observable implements Readable, Saveabl
         return output;
     }
 
-    // EFFECTS: sets the file of the class to the given file
-    // Mostly used for testing purposes again
-    public void setFile(File file) {
-        this.file = file;
-    }
-
     // ------------------------------ ABSTRACT METHODS -------------------------------
 
     public abstract void processDetails() throws FileNotFoundException, IncorrectFormatException;
