@@ -143,9 +143,9 @@ public class PeopleFileTest {
         Exception empty = new EmptyFileException();
         Exception format = new IncorrectFormatException();
 
-        PF.handleException(notFound);
-        PF.handleException(empty);
-        PF.handleException(format);
+        assertEquals("That file is not found! Please enter a valid location!",PF.handleException(notFound));
+        assertEquals("File cannot be empty! Please add some content to the file.",PF.handleException(empty));
+        assertEquals("The file's contents are formatted incorrectly!",PF.handleException(format));
 
     }
 

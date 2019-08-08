@@ -58,6 +58,7 @@ public class GroupTest {
         Group g2 = new Group ("Group Name");
         Group g3 = new Group ("Group Not Name");
 
+        assertFalse(g1.equals(null));
         assertTrue(g1.equals(g1));
         assertFalse(g1.equals(p));
 
