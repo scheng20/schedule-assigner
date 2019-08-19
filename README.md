@@ -1,9 +1,9 @@
 # Schedule Assigner
 A simple program that assigns a given list of people to a given schedule.
 
-<img src="screenshots/ScheduleAssigner1.PNG" width="285" title="Intial View"> <img src="screenshots/ScheduleAssigner2.PNG" width="285" title="After Loading Files"> <img src="screenshots/ScheduleAssigner3.PNG" width="285" title="After Assigning Files">
+<img src="screenshots/ScheduleAssigner1.PNG" width="285" title="Intial View"> <img src="screenshots/ScheduleAssigner2.PNG" width="285" title="After Loading Files"> <img src="screenshots/ScheduleAssigner3new.PNG" width="285" title="After Assigning Files">
 
-<img src="screenshots/ScheduleAssigner4.PNG" width="285" title="After Export"> <img src="screenshots/ScheduleAssigner5.PNG" width="285" title="Exported File"> <img src="screenshots/ScheduleAssigner6.PNG" width="285" title="Input Files">
+<img src="screenshots/ScheduleAssigner4.PNG" width="285" title="After Export"> <img src="screenshots/ScheduleAssigner5new.PNG" width="285" title="Exported File"> <img src="screenshots/ScheduleAssigner6.PNG" width="285" title="Input Files">
 
 ## :star: Introduction
 This was my final project for the Software Construction Course (CPSC 210) I took during my undergrad at the University of British Columbia (UBC). Although I had started building programs prior to taking this course, I learned how to truly design programs instead of just piecing code together after taking CPSC 210. The funtionalities of this program are definitely not as extensive as what I have built before, but this project was mostly a learning experience on how to design, test, and write cohesive code to create truly robust programs. 
